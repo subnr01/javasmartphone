@@ -1,17 +1,17 @@
 /**
  * 
  */
-package CoinToss;
+package CoinTossSim;
 
 /**
  * @author Subramanian 
  * @andrew_id snatara1
  */
 
-public class Simulation3 {
+public class Simulation1 {
 	public static void main(String[] args) {
-		System.out.println("Simulation3:Toss 0 Times");
-		int tossTimes = 0; // total toss number
+		System.out.println("Simulation1:Toss 20 Times");
+		int tossTimes = 20; // total toss number
 		
 		int headsCount = 0; // total number of heads
 		int tailscount = 0; // total number of tails
@@ -24,7 +24,7 @@ public class Simulation3 {
 		// display the initial facing up
 		System.out.println("Initially Facing Up : " + testCoin.getSideUp());
 		
-		// toss 0 times, display the facing up side each time
+		// toss 20 times, display the facing up side each time
 		System.out.println("Toss " + tossTimes + " Times");
 		for (int count = 0; count < tossTimes; count++) {
 			testCoin.toss();

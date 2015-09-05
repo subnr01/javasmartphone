@@ -1,7 +1,7 @@
 /**
  * 
  */
-package CoinToss;
+package CoinTossSim;
 
 /**
  * @author Subramanian 
