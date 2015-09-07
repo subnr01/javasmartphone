@@ -1,6 +1,6 @@
 package simparkingticket;
 
-public class Simulator {
+public class Simulation {
 	
 	//Array of test cases
 	private static TestCase[] testCases = {
@@ -15,10 +15,6 @@ public class Simulator {
 					"BMW","i8","BLACK","123458",61,60,
 					"Steve","33333"),
 			new TestCase("Parking time is greater than purchased parking time "
-					+ "by exactly equal to 60 minutes",
-					"Mercedes","Benz","WHITE","123459", 120, 60,
-					"Daryl","44444"),		
-			new TestCase("Parking time is greater than purchased parking time "
 					+ "by more than 60 minutes",
 					"AUDI","A3","WHITE","123556", 180, 60,
 					"Mike","55555"),
@@ -29,8 +25,7 @@ public class Simulator {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
-		
+
 		System.out.println("Simulating test cases for Parking Ticket");
 		
 		for (int i = 0; i < testCases.length; i++){

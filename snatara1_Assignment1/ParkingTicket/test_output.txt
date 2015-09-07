@@ -56,31 +56,7 @@ Officer Badge Number : 33333
 ====================
 
 ====================
-Test 4: Parking time is greater than purchased parking time by exactly equal to 60 minutes
-The Car has been parked for 120 minutes
-Purchased parking time is 60 minutes
-Parking is illegal
-
-Parking Ticket Info
--------------------
-
-Car Information:
-Make: Mercedes
-Model: Benz
-Color: WHITE
-License Number: 123459
-
-Parking Fine : $25.0
-
-Police Officer Info:
-Officer Name : Daryl
-Officer Badge Number : 44444
--------------------
-
-====================
-
-====================
-Test 5: Parking time is greater than purchased parking time by more than 60 minutes
+Test 4: Parking time is greater than purchased parking time by more than 60 minutes
 The Car has been parked for 180 minutes
 Purchased parking time is 60 minutes
 Parking is illegal
