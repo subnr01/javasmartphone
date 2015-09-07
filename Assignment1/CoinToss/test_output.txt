@@ -1,0 +1,57 @@
+Simulation has started
+
+Running simulation with input: 10
+Coin Initial Face is : tails
+Toss the Coin 10  times
+Current Face after toss 1 is heads
+Current Face after toss 2 is heads
+Current Face after toss 3 is heads
+Current Face after toss 4 is heads
+Current Face after toss 5 is heads
+Current Face after toss 6 is tails
+Current Face after toss 7 is tails
+Current Face after toss 8 is heads
+Current Face after toss 9 is tails
+Current Face after toss 10 is heads
+Number of Heads Face : 7
+Number of Tails Face : 3
+
+Running simulation with input: 20
+Coin Initial Face is : heads
+Toss the Coin 20  times
+Current Face after toss 1 is heads
+Current Face after toss 2 is heads
+Current Face after toss 3 is tails
+Current Face after toss 4 is tails
+Current Face after toss 5 is tails
+Current Face after toss 6 is tails
+Current Face after toss 7 is tails
+Current Face after toss 8 is heads
+Current Face after toss 9 is tails
+Current Face after toss 10 is heads
+Current Face after toss 11 is tails
+Current Face after toss 12 is tails
+Current Face after toss 13 is heads
+Current Face after toss 14 is tails
+Current Face after toss 15 is heads
+Current Face after toss 16 is heads
+Current Face after toss 17 is heads
+Current Face after toss 18 is tails
+Current Face after toss 19 is heads
+Current Face after toss 20 is tails
+Number of Heads Face : 9
+Number of Tails Face : 11
+
+Running simulation with input: 0
+Coin Initial Face is : tails
+Coin not tossed
+Invalid input "0"
+Provide a input greater than zero
+
+Running simulation with input: -1
+Coin Initial Face is : heads
+Coin not tossed
+Invalid input "-1"
+Provide a input greater than zero
+
+Simulation has ended

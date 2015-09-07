@@ -1,0 +1,104 @@
+Simulating test cases for Parking Ticket
+
+====================
+Test 1: Parking time within the purchased time
+The Car has been parked for 50 minutes
+Purchased parking time is 60 minutes
+Parking is legal
+====================
+
+====================
+Test 2: Parking time is equal to the purchased parking time
+The Car has been parked for 60 minutes
+Purchased parking time is 60 minutes
+Parking is illegal
+
+Parking Ticket Info
+-------------------
+
+Car Information:
+Make: Jagaur
+Model: XF
+Color: WHITE
+License Number: 123457
+
+Parking Fine : $25.0
+
+Police Officer Info:
+Officer Name : Sam
+Officer Badge Number : 22222
+-------------------
+
+====================
+
+====================
+Test 3: Parking time is greater than purchased parking timebut within 60 minutes
+The Car has been parked for 61 minutes
+Purchased parking time is 60 minutes
+Parking is illegal
+
+Parking Ticket Info
+-------------------
+
+Car Information:
+Make: BMW
+Model: i8
+Color: BLACK
+License Number: 123458
+
+Parking Fine : $25.0
+
+Police Officer Info:
+Officer Name : Steve
+Officer Badge Number : 33333
+-------------------
+
+====================
+
+====================
+Test 4: Parking time is greater than purchased parking time by exactly equal to 60 minutes
+The Car has been parked for 120 minutes
+Purchased parking time is 60 minutes
+Parking is illegal
+
+Parking Ticket Info
+-------------------
+
+Car Information:
+Make: Mercedes
+Model: Benz
+Color: WHITE
+License Number: 123459
+
+Parking Fine : $25.0
+
+Police Officer Info:
+Officer Name : Daryl
+Officer Badge Number : 44444
+-------------------
+
+====================
+
+====================
+Test 5: Parking time is greater than purchased parking time by more than 60 minutes
+The Car has been parked for 180 minutes
+Purchased parking time is 60 minutes
+Parking is illegal
+
+Parking Ticket Info
+-------------------
+
+Car Information:
+Make: AUDI
+Model: A3
+Color: WHITE
+License Number: 123556
+
+Parking Fine : $45.0
+
+Police Officer Info:
+Officer Name : Mike
+Officer Badge Number : 55555
+-------------------
+
+====================

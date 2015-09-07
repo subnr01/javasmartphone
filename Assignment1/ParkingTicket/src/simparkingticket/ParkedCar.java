@@ -1,27 +1,24 @@
 /**
- * 
+ * Author: Subramanian N
+ * Andrew id: snatara1
  */
-package ParkingTicketSim;
 
-/**
- * @author Subramanian 
- * @andrew_id snatara1
- */
+package simparkingticket;
+
+
 
 public class ParkedCar {
-	/*
-	 * instance variable of car's make, model, color, license number, and parked
-	 * minutes
-	 */
-	private String make = null;
-	private String model = null;
-	private String color = null;
-	private String licenseNumber = null;
-	private int parkedMinutes = 0;
+	
+	private String make;  //make of the parked car
+	private String model; //model of the parked car
+	private String color; //color of the parked car
+	private String licenseNumber; //license number of the parked car
+	private int parkedMinutes;    //Number of minutes the car is parked  
 
 	/*
-	 * ParkedCar() set the parked car's information if input is illegal, keep
-	 * the default value
+	 * ParkedCar() 
+	 * Constructor to set the the attributes 
+	 * of the parked car.
 	 * 
 	 * @param : make,model,color,licenseNumber,parkedMinutes
 	 * 
@@ -34,20 +31,26 @@ public class ParkedCar {
 			this.licenseNumber = licenseNumber;
 		if (parkedMinutes >= 0) {
 			this.parkedMinutes = parkedMinutes;
+		}else {
+			this.parkedMinutes = 0;
 		}
 	}
 
 	/*
-	 * getMake() : get the car's make
+	 * getMake()  
+	 * get the make 
+	 * of the parked car
 	 * 
-	 * @param make
+	 * @param none
 	 */
 	public String getMake() {
 		return make;
 	}
 
 	/*
-	 * setMake() : set the car's make
+	 * setMake()  
+	 * set the make of
+	 * the parked car
 	 * 
 	 * @param make
 	 */
@@ -56,16 +59,20 @@ public class ParkedCar {
 	}
 
 	/*
-	 * getModel() : get the car's model
+	 * getModel()  
+	 * get the model of the
+	 * parked car
 	 * 
-	 * @param model
+	 * @param none
 	 */
 	public String getModel() {
 		return model;
 	}
 
 	/*
-	 * setModel() : set the car's model
+	 * setModel()
+	 * set the model of 
+	 * the parked car.
 	 * 
 	 * @param model
 	 */
@@ -74,16 +81,20 @@ public class ParkedCar {
 	}
 
 	/*
-	 * getColor() : get the car's color
+	 * getColor()
+	 * Get the color of
+	 * the parked car.
 	 * 
-	 * @param color
+	 * @param none
 	 */
 	public String getColor() {
 		return color;
 	}
 
 	/*
-	 * setColor() : set the car's color
+	 * setColor() 
+	 * Set the color of
+	 * the parked car
 	 * 
 	 * @param color
 	 */
@@ -92,34 +103,42 @@ public class ParkedCar {
 	}
 
 	/*
-	 * getLicenseNumber() : get the car's license number
+	 * getLicenseNumber()
+	 * Get the license number 
+	 * of the parked car
 	 * 
-	 * @param licensenumber
+	 * @param none
 	 */
 	public String getLicenseNumber() {
 		return licenseNumber;
 	}
 
 	/*
-	 * setlicenseNumber() : set the car's license number
+	 * setlicenseNumber()
+	 * Set the license number 
+	 * of the parked car
 	 * 
 	 * @param licensenumber
 	 */
-	public void setlicenseNumber(String licenseNumber) {
+	public void setLicenseNumber(String licenseNumber) {
 			this.licenseNumber = licenseNumber;
 	}
 
 	/*
-	 * getParkedMinutes() : get the car's parking minutes
+	 * getParkedMinutes()
+	 * Get the number of minutes
+	 * the car is parked.
 	 * 
-	 * @param parkedMinutes
+	 * @param none
 	 */
 	public int getParkedMinutes() {
 		return parkedMinutes;
 	}
 
 	/*
-	 * setParkedMinutes() : set the car's parking minutes
+	 * setParkedMinutes()
+	 * Set the parking minutes
+	 * for the car
 	 * 
 	 * @param parkedMinutes
 	 */
