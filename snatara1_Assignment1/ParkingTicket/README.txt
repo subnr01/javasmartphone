@@ -80,12 +80,13 @@ to simulate the event of committing a parking voilation.
 
 The simation class uses a test case object.
 The testClass object belongs to the testCase class
-which all the objects as instance variables.
+which contains the PoliceOfficer, ParkingMeter
+and the ParkedCar as instance variables.
 It also contains the purchased parking 
 minutes and parked minutes.
 
 The simulation class instantiates the testCase object
-for different scenarios and prints the parking
+for different scenarios and obtains the parking
 ticket in these scenarios.
 
 
