@@ -63,7 +63,7 @@ The PoliceOfficer class holds the identification information
 of the police officer who issues the parking ticket.
 
 When a ParkedCar is instantiated, it has the information
-on the purchased parking minutes.
+on the minutes that the car has been parked.
 
 The PoliceOfficer object is responsible for determining
 whether an offence is committed or not.
