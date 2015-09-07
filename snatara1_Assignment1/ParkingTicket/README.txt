@@ -33,8 +33,10 @@ Design
 
 The objective of this assignment is to simulate the
 event of a parking ticket voilation in a real world
-and return the details of the parked car and the 
-resulting fine/penalty incurred with the offence.
+and return the details of the parked car, the 
+resulting fine/penalty incurred with the offence
+and the details of the police officer
+who issued the ticket/fine/penalty.
 
 A parking ticket is issued when the parking time
 surpasses the purchased Parking time and when a police
