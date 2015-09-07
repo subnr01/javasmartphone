@@ -10,12 +10,13 @@ package simparkingticket;
 
 public class ParkingTicket {
 	
+	private static final double BASE_FINE = 25.00; // base fine 
+	private static final double EXTRA_PER_HOUR_FINE = 10.00; // fine per extra hour
 	private ParkedCar parkedCar;
 	private double fine; //parking fine
 	private PoliceOfficer policeOfficer; //police officer issuing ticket
 	private ParkingMeter parkingMeter; 
-	private static final double BASE_FINE = 25.00; // base fine 
-	private static final double EXTRA_PER_HOUR_FINE = 10.00; // fine per extra hour
+	
 
 	/*
 	 * ParkingTicket() 
