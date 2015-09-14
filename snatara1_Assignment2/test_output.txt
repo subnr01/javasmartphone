@@ -1,0 +1,49 @@
+****************************
+Demonstrating Valid Input Case
+--------------------------------------
+SID	Q1	Q2	Q3	Q4	Q5
+1234	052	007	100	078	034
+2134	090	036	090	077	030
+3124	100	045	020	090	070
+4532	011	017	081	032	077
+5678	020	012	045	078	034
+6134	034	080	055	078	045
+7874	060	100	056	078	078
+8026	070	010	066	078	056
+9893	034	009	077	078	020
+1947	045	040	088	078	055
+2877	055	050	099	078	080
+3189	022	070	100	078	077
+4602	089	050	091	078	060
+5405	011	011	000	078	010
+6999	000	098	089	078	020
+
+High Score	100	100	100	90	80
+Low Score	0	7	0	32	10
+Average		46.2	42.3	70.5	75.7	49.7
+****************************
+
+ Demonstrating First Exception case
+--------------------------------------
+ERR: lab2.exceptions.InvalidStudentNumberException: Input Student Number is greater than 40
+****************************
+
+ Demonstrating Second Exception case
+--------------------------------------
+Error: lab2.exceptions.NoInputException: No input found
+****************************
+
+ Demonstrating Third Exception case
+--------------------------------------
+Error: lab2.exceptions.NoInputException: Empty file
+****************************
+
+ Demonstrating Fourth Exception case
+--------------------------------------
+Error: lab2.exceptions.InvalidScoreNumberException: Number of Quiz scores is more than 5
+****************************
+
+ Demonstrating Fifth Exception case
+--------------------------------------
+Error: lab2.exceptions.InvalidScoreNumberException: Number of Quiz scores is less than 5
+****************************
