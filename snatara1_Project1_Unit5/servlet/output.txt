@@ -1,0 +1,338 @@
+------------
+User Menu
+------------
+Upload Properties/text File
+Configure a Car
+Quit
+Type (Upload/Configure/Quit):upload
+Server: Request for upload,  Input the  file number
+
+0 Audi.txt
+1 Focus.txt
+2 Musang.Properties
+3 GTR.Properties
+0
+Build Car From Txt Successfuly
+------------
+User Menu
+------------
+Upload Properties/text File
+Configure a Car
+Quit
+Type (Upload/Configure/Quit):upload
+Server: Request for upload,  Input the  file number
+
+0 Audi.txt
+1 Focus.txt
+2 Musang.Properties
+3 GTR.Properties
+1
+Build Car From Txt Successfuly
+------------
+User Menu
+------------
+Upload Properties/text File
+Configure a Car
+Quit
+Type (Upload/Configure/Quit):upload
+Server: Request for upload,  Input the  file number
+
+0 Audi.txt
+1 Focus.txt
+2 Musang.Properties
+3 GTR.Properties
+2
+Server: build Auto successfully
+
+
+------------
+User Menu
+------------
+Upload Properties/text File
+Configure a Car
+Quit
+Type (Upload/Configure/Quit):upload
+Server: Request for upload,  Input the  file number
+
+0 Audi.txt
+1 Focus.txt
+2 Musang.Properties
+3 GTR.Properties
+3
+Server: build Auto successfully
+
+
+------------
+User Menu
+------------
+Upload Properties/text File
+Configure a Car
+Quit
+Type (Upload/Configure/Quit):configure
+Server: Get configure request
+Server: transfer AutoList successfully
+-----------------------------
+Printing all Automobile details
+Model 0 : Audi A3
+Model 1 : Focus Wagon ZTW
+Model 2 : Ford Mustang
+Model 3 : Nissan GTR
+-----------------------------
+Select a number of model to configure
+0
+Server: Automobile information transferred successfully
+----------------------------
+Start Choosing the options for Car configuration
+Color
+0. Fort Knox Gold:Price 0.00
+1. Liquid Grey:Price 0.00
+2. Infra-Red:Price 0.00
+3. Grabber Green:Price 0.00
+4. Sangria Red:Price 0.00
+5. French Blue:Price 0.00
+SELECT YOUR CHOICE for OPTIONSET:  (Color)
+1
+
+Transmission
+0. Automatic:Price 0.00
+1. Standard:Price -815.00
+SELECT YOUR CHOICE for OPTIONSET:  (Transmission)
+1
+
+Brakes/Traction Control
+0. Standard:Price 0.00
+1. ABS:Price 400.00
+2. ABS with Advance Trac:Price 1625.00
+SELECT YOUR CHOICE for OPTIONSET:  (Brakes/Traction Control)
+1
+
+Side Impact Airbags
+0. None:Price 0.00
+1. Selected:Price 350.00
+SELECT YOUR CHOICE for OPTIONSET:  (Side Impact Airbags)
+1
+
+Power Moonroof
+0. None:Price 0.00
+1. Selected:Price 595.00
+SELECT YOUR CHOICE for OPTIONSET:  (Power Moonroof)
+1
+
+----------------------------
+Configured Car of your Choice
+Audi A3
+Color:Liquid Grey
+Transmission:Standard
+Brakes/Traction Control:ABS
+Side Impact Airbags:Selected
+Power Moonroof:Selected
+Total price : 34873.0
+----------------------------
+
+------------
+User Menu
+------------
+Upload Properties/text File
+Configure a Car
+Quit
+Type (Upload/Configure/Quit):configure
+Server: Get configure request
+Server: transfer AutoList successfully
+-----------------------------
+Printing all Automobile details
+Model 0 : Audi A3
+Model 1 : Focus Wagon ZTW
+Model 2 : Ford Mustang
+Model 3 : Nissan GTR
+-----------------------------
+Select a number of model to configure
+1
+Server: Automobile information transferred successfully
+----------------------------
+Start Choosing the options for Car configuration
+Color
+0. Fort Knox Gold Clearcoat Metallic:Price 0.00
+1. Liquid Grey Clearcoat Metallic:Price 0.00
+2. Infra-Red Clearcoat:Price 0.00
+3. Grabber Green Clearcoat Metallic:Price 0.00
+4. Sangria Red Clearcoat Metallic:Price 0.00
+5. French Blue Clearcoat Metallic:Price 0.00
+6. Twilight Blue Clearcoat Metallic:Price 0.00
+7. CD Silver Clearcoat Metallic:Price 0.00
+8. Pitch Black Clearcoat:Price 0.00
+9. Cloud 9 White Clearcoat:Price 0.00
+SELECT YOUR CHOICE for OPTIONSET:  (Color)
+1
+
+Transmission
+0. Automatic:Price 0.00
+1. Standard:Price -815.00
+SELECT YOUR CHOICE for OPTIONSET:  (Transmission)
+1
+
+Brakes/Traction Control
+0. Standard:Price 0.00
+1. ABS:Price 400.00
+2. ABS with Advance Trac:Price 1625.00
+SELECT YOUR CHOICE for OPTIONSET:  (Brakes/Traction Control)
+1
+
+Side Impact Airbags
+0. None:Price 0.00
+1. Selected:Price 350.00
+SELECT YOUR CHOICE for OPTIONSET:  (Side Impact Airbags)
+1
+
+Power Moonroof
+0. None:Price 0.00
+1. Selected:Price 595.00
+SELECT YOUR CHOICE for OPTIONSET:  (Power Moonroof)
+1
+
+----------------------------
+Configured Car of your Choice
+Focus Wagon ZTW
+Color:Liquid Grey Clearcoat Metallic
+Transmission:Standard
+Brakes/Traction Control:ABS
+Side Impact Airbags:Selected
+Power Moonroof:Selected
+Total price : 18975.0
+----------------------------
+
+------------
+User Menu
+------------
+Upload Properties/text File
+Configure a Car
+Quit
+Type (Upload/Configure/Quit):configure
+Server: Get configure request
+Server: transfer AutoList successfully
+-----------------------------
+Printing all Automobile details
+Model 0 : Audi A3
+Model 1 : Focus Wagon ZTW
+Model 2 : Ford Mustang
+Model 3 : Nissan GTR
+-----------------------------
+Select a number of model to configure
+2
+Server: Automobile information transferred successfully
+----------------------------
+Start Choosing the options for Car configuration
+Color
+0. Fort Knox Gold Clearcoat Metallic:Price 10.00
+1. Liquid Grey Clearcoat Metallic:Price 20.00
+2. Infra-Red Clearcoat:Price 30.00
+3. Grabber Green Clearcoat Metallic:Price 40.00
+4. Sangria Red Clearcoat Metallic:Price 50.00
+5. French Blue Clearcoat Metallic:Price 60.00
+6. Twilight Blue Clearcoat Metallic:Price 70.00
+7. CD Silver Clearcoat Metallic:Price 80.00
+8. Pitch Black Clearcoat:Price 90.00
+9. Cloud 9 White Clearcoat:Price 100.00
+SELECT YOUR CHOICE for OPTIONSET:  (Color)
+1
+
+Transmission
+0. Automatic:Price 0.00
+1. Standard:Price -815.00
+SELECT YOUR CHOICE for OPTIONSET:  (Transmission)
+1
+
+Brakes/Traction Control
+0. Standard:Price 0.00
+1. ABS:Price 400.00
+2. ABS with Advance Trac:Price 1625.00
+SELECT YOUR CHOICE for OPTIONSET:  (Brakes/Traction Control)
+1
+
+Side Impact Airbags
+0. None:Price 0.00
+1. Selected:Price 350.00
+SELECT YOUR CHOICE for OPTIONSET:  (Side Impact Airbags)
+1
+
+Power Moonroof
+0. None:Price 0.00
+1. Selected:Price 595.00
+SELECT YOUR CHOICE for OPTIONSET:  (Power Moonroof)
+1
+
+----------------------------
+Configured Car of your Choice
+Ford Mustang
+Color:Liquid Grey Clearcoat Metallic
+Transmission:Standard
+Brakes/Traction Control:ABS
+Side Impact Airbags:Selected
+Power Moonroof:Selected
+Total price : 24350.0
+----------------------------
+
+------------
+User Menu
+------------
+Upload Properties/text File
+Configure a Car
+Quit
+Type (Upload/Configure/Quit):configure
+Server: Get configure request
+Server: transfer AutoList successfully
+-----------------------------
+Printing all Automobile details
+Model 0 : Audi A3
+Model 1 : Focus Wagon ZTW
+Model 2 : Ford Mustang
+Model 3 : Nissan GTR
+-----------------------------
+Select a number of model to configure
+3
+Server: Automobile information transferred successfully
+----------------------------
+Start Choosing the options for Car configuration
+Color
+0. Regal Red:Price 200.00
+1. Solid Red:Price 300.00
+2. Super Silver:Price 400.00
+SELECT YOUR CHOICE for OPTIONSET:  (Color)
+1
+
+Red/Amber Premium Interior Package
+0. None;:Price 0.00
+1. Selected;:Price 4000.00
+SELECT YOUR CHOICE for OPTIONSET:  (Red/Amber Premium Interior Package)
+1
+
+Brakes/Traction Control
+0. Standard:Price 3000.00
+1. ABS:Price 4000.00
+2. ABS Advance:Price 6000.00
+SELECT YOUR CHOICE for OPTIONSET:  (Brakes/Traction Control)
+1
+
+Side Impact Airbags
+0. None:Price 0.00
+1. Selected:Price 3500.00
+SELECT YOUR CHOICE for OPTIONSET:  (Side Impact Airbags)
+1
+
+----------------------------
+Configured Car of your Choice
+Nissan GTR
+Color:Solid Red
+Red/Amber Premium Interior Package:Selected;
+Brakes/Traction Control:ABS
+Side Impact Airbags:Selected
+Total price : 113570.0
+----------------------------
+
+------------
+User Menu
+------------
+Upload Properties/text File
+Configure a Car
+Quit
+Type (Upload/Configure/Quit):quit
+closed!

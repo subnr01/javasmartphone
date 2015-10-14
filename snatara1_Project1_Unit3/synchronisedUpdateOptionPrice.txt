@@ -1,0 +1,4 @@
+Thread 1 Transmission Automatic Price: 0.0
+Thread 2 Transmission Automatic Price: 5.0
+Price After Update by Thread1 is 5.0
+Price After Update by Thread2 is 15.0
