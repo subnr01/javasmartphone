@@ -1,0 +1,30 @@
+Lecture1_video
+
+
+1. Compile two paragraphs on the project
+
+2. Compiling project requirements:  
+   -- draft version by 31st, finish it by 6th November (after feedback)
+   -- Make draft submission on 31st
+
+3. Project design
+   -- Take care of all design constructs from Unit 1, otherwise lose points
+   -- No points recoverable, no makeup points
+   -- custom backend ( servlets, DB, sockets etc) 
+   -- design reviews on November 16th, some during class time.
+
+4. Construction   
+   -- after design, commence construction; 2 checkpoints
+ 
+5. Submission   
+ -- Dec 7 - 14: submit project and final presentation, poster board
+ -- how lessons learnt from mini1 -submit
+
+
+Expectations:
+Custom backup along with android app.
+
+
+Look at Mini_day1.pdf
+
+

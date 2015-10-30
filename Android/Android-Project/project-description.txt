@@ -1,0 +1,12 @@
+TEAM MEMBERS: Sudhir Ravi sudhirr@andrew.cmu.edu, Subramanian Natarajan snatara1@andrew.cmu.edu, Nihar Joshi niharj@andrew.cmu.edu 
+APP NAME: 4everHungry 
+DESCRIPTION: 
+We intend on making a location based restaurant recommendation app. The user can select options like Cuisine, Order Pickup/Delivery, and Open Now while querying. The app would then display all the possible choices nearby that the user can choose from. Each listing will have details like Name, Address, Reviews (optional), and photos of the restaurant. Additionally, the user can save a particular search with a custom name for fast and convenient retrieval later. For example, if a user searches for Thai restaurants when studying at CMU, this result can be stored as CMU_Thai.
+The app will make use of open API’s available on the net to get restaurant listings and display them to the user. Similarly, Google Maps API’s will be used to get the current location of the user. All the saved searches will be stored on a database that is present in the client’s phone.
+The hardware features that will be used are:
+•   GPS(To get location of user from GPS signal)
+•   Touchscreen(For easy navigation)
+•   SQL Lite DB(To stored saved searches and retrieve them later)
+•   Web Services(API used to get current location as well as restaurant listings)
+•   Network based Geo location (To get location of user from Wi-Fi networks.
+

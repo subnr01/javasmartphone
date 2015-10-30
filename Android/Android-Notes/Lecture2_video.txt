@@ -1,0 +1,32 @@
+
+
+Lecture 2:
+
+
+
+android versions:
+
+- screensize: read screensupport link
+- material design introduced in lollipup
+- understand the essentials for design, construction of android app
+- check the quality criteria
+- download android studio and enable support for api 19/20
+- android studio takes more than 5 GB
+- configure virtual devices, recommended to run only one device
+- look at android/tools/workflow 
+- user story: 
+	- highlight the problem that is being solved. user story should justify the product
+	- should see through customer lens. ( look at BMC)
+	- one user story per actor
+	- for piazza, four actors: instructor, TA, student, System
+- 300 user cases, but describe only those u implement.
+- follow the template provided for user cases, do the use cases before the wireframe
+- u have to figure out how many use cases u want to do.
+- wireframes: plan two screensize tablet/smartphone
+- wireframes: use tools
+
+
+
+- no back button, menus
+- read a book called "dont make me think"  
+- 
