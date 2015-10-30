@@ -1,4 +1,4 @@
-Project1Unit5-snatara1
+Project1unit6-snatara1
 -------------------------
 
 Car configuration Application
@@ -10,16 +10,12 @@ Instructions:
 2. Import the client project
 3. Run the server project as Java application
 4. Run the client project as Java application
-5. Switch to the client console.
-6. Type upload and upload models
-   to the server via the user interface
-   provided with the client.
-7. Type quit to quit from the client.
-8. Start the client, but this time
-   select the "Run as on a server"
-9. The servlet should start running.
-10. From then on, follow the instructions in the
-    Graphical user interface.
+5. Switch to the server console.
+6. Run the driver program.
+7. It should populate the database with 
+   the automobile information from the 
+   text and the properties files.
+
 
 Closing the servlet Application:
 1. Stop tomcat server.
@@ -37,18 +33,23 @@ Java version "1.8.0_20"
 
 Package information
 ---------------------
-java package: project1unit5
+java package: project1unit6
 
 
 Files Submitted
 ------------------
-+ snatara1_Project1Unit5
++ snatara1_Project1unit6
    + server
    + client
 
 +server
    + bin(folder)
    + src(folder)
+   + output
+   + class diagram file
+   + properties file
+   + text files
+   + database-execute files
 
 +client
 	+bin
@@ -62,79 +63,46 @@ Files Submitted
 Design
 ----------
 
-The idea is demonstrate configuring
-a automobile via servlets.
-The servlets enable 
-configuration via a nice GUI.
+The idea is demonstrate storing
+automobile object information
+into the mysql database.
 
-The GUI receives the inputs and
-displays the modified 
-automobile OptionSets and Options 
-with the final price.
-
-The server stores the automobile information
-in a in memory linked hash map, so whenever the client
-requests this information, the server can 
-pass this information to the client.
-
-The server functionality is realised by 
-the introduction of the server class
-while the client functionality is 
-realised by the introduction of the 
-Socketclient class.
-
-The server runs on a provided port
-accepting client connections 
-continuosly.
-
-The client on the other hand connects to 
-the server at the given ip address and the
-port number and starts the request/response
-operations.
-
-As mentioned, the client can read a properties 
-file and send the information to the Server
-as a properties object.
-
-A new class named "BuildCarModelOptions"
-implements a new introduced interface
-called AutoServer.
-The Autoserver provides generic interfaces
-to read from properties object
-or read from normal file information.
+The database is populated with automobile
+information run by sql statements from
+the java server code.
 
 
-The Server uses the "BuildCarModelOptions"
-object to read the automobile information
-received from the client either by properties
-or by text file.
+In addition to the in memory 
+linked hash map, the server stores
+the automobile information in the
+database as well.
 
-Coming to the servlets,
-two new Servlets are introduced.
-1. SelectModel which enables the user to select a car model
-2. UserSelectedOptions which enables the user to input the new values
-   for the options of the Optionsets.
+Most of the functionality in this
+unit is implemented on the server side.
+A new interface “DatabaseAuto” is introduced
+to insert,update,delete automobile
+information into the mysql database.
 
-The results are displayed via a jsp web page.
+The BuildAuto implements this interface 
+which and routes data into the database by
+invoking the methods of a newly introduced
+class “DatabaseIO”. The methods of “DatabaseIO”
+provide the interface to the database by connecting
+to the database and performing 
+create/delete/modify operations with the
+database.
 
-The objective of this exercise is same as the last 
-assignment, with the only difference being that
-the configuration and display is now enabled
-as web pages.
 
 
 
 Class diagram
 ----------------
 
-Two new classes added:
-1. SelectModel: spawns a servlet and 
-   enables the user to select a car model via  a web page.
-2. UserSelectedOptions spawns a servlet and
-   enables the user to inputs new values
-   and view the final configuration with
-   the total price.
-
+1. New class “DatabaseIO” is introduced, which acts as
+   an interface to the database for CRUD operations.
+2. New interface “DatabaseAuto” is introduced which
+   provides interfaces for the Automobile object
+   to interact with database.
 
 
 

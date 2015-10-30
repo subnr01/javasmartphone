@@ -1,4 +1,0 @@
-Audi.txt
-Focus.txt
-Musang.Properties
-ModelS.Properties
