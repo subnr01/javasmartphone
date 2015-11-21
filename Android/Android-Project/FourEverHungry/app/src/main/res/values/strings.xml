@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">4EverHungry</string>
+    <string name="welcome_message">Welcome !!\nHow would you like to search for yummy food\n</string>
+    <string name="search_options">Search Options</string>
+    <string name="registration_message">\tWelcome to 4EverHungry.\nYummy food is a few clicks away !! :)\n</string>
+    <string name="dominos_info">Dominos Pizza\n300 6th Avenue\nPittsburgh PA,15222\n412-288-8989\n</string>
+    <string name="reviews">Review1\n\nReview2\n\nReview3\n\nReview4\n\nReview5\n\nReview6</string>
+
+    <string-array name="cuisines">
+        <item>Pizza</item>
+        <item>American</item>
+        <item>Italian</item>
+        <item>Chinese</item>
+        <item>Burgers</item>
+        <item>Sandwiches</item>
+        <item>Mexican</item>
+        <item>Thai</item>
+    </string-array>
+    <string name="cuisine_prompt">ANY</string>
+    <string name="rating_prompt">ANY</string>
+    <string-array name="ratings">
+        <item>>4.0</item>
+        <item>3.1-4.0</item>
+        <item>2.1-3.0</item>
+        <item>1.1-2.0</item>
+        <item>0.0-1.0</item>
+    </string-array>
+    <string name="distance_prompt">ANY</string>
+    <string-array name="distances">
+        <item>Bird\'s-eye View</item>
+        <item>Driving</item>
+        <item>Biking</item>
+        <item>Walking</item>
+        <item>Within 4 blocks</item>
+    </string-array>
+    <string-array name="saved_searches">
+        <item>CMU_Thai</item>
+        <item>Home_Italian</item>
+        <item>Late_Night</item>
+        <item>Misc</item>
+    </string-array>
+</resources>
