@@ -25,15 +25,16 @@ public class SearchPage extends Activity {
     public void goToListings(View sender) {
         String location, cuisine;
         double distance;
+        ArrayList<RestaurantInfo> searchResults = null;
 
         EditText et = (EditText)findViewById(R.id.editText);
         location = et.getText().toString();
         if(location.equals("Current")) {
             // TODO: Define current by obtaining current lat & long
         }
-
+        location = "Pittsburgh";
         et = (EditText)findViewById(R.id.editText); // TODO: This is currently a spinner and should be changed.
-        cuisine = et.getText().toString();
+        cuisine = "Thai";
         distance = 10000; // 10KM
         SearchInfo searchInfo = new SearchInfo(location, cuisine, distance);
         SearchUtil searchUtil = new SearchUtil(searchInfo);
@@ -43,13 +44,15 @@ public class SearchPage extends Activity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                     .permitAll().build();
             StrictMode.setThreadPolicy(policy);
-            ArrayList<RestaurantInfo> searchResults = searchUtil.search(); // Invoke YELP web service with this information.
+            searchResults = searchUtil.search(); // Invoke YELP web service with this information.
 
             //your codes here
 
         }
-
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("listings", searchResults);
         Intent intent = new Intent(SearchPage.this, ListingsPage.class);
+        intent.putExtras(bundle);
         startActivity(intent);
         finish();
     }

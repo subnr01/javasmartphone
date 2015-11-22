@@ -39,8 +39,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scrollView"
-        android:layout_below="@+id/imageView4"
-        android:layout_centerHorizontal="true"
         android:fillViewport="true"
         android:scrollIndicators="right"
         android:clickable="true">
@@ -49,7 +47,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayout2">
+            android:id="@+id/listingsParentLayout">
 
             <Button
                 android:layout_width="fill_parent"

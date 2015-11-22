@@ -51,16 +51,18 @@ public class SearchUtil {
         Log.d("INPUT TO YELP LOCATION", searchInfo.getLocation());
         Log.d("INPUT TO YELP RADIUS", String.valueOf(searchInfo.getDistance()));
 
-        request.addQuerystringParameter("term", searchInfo.getCuisine());
+        request.addQuerystringParameter("term", "food" + " " + searchInfo.getCuisine());
         request.addQuerystringParameter("location", searchInfo.getLocation());
         request.addQuerystringParameter("radius_filter", String.valueOf((int) searchInfo.getDistance()));
+
+        request.addQuerystringParameter("limit", String.valueOf(10));
+
         Log.d("YELP REQUEST QUERY", request.toString());
         this.service.signRequest(this.accessToken, request);
         Response response = request.send();
 
         ArrayList<RestaurantInfo> result = new ArrayList<RestaurantInfo>();
- //       try {
-            //JSONObject jsonObject = new JSONObject(response.getBody());
+
             String searchResponseJSON = response.getBody();
         System.out.println("RestResponse " + searchResponseJSON);
 
@@ -82,17 +84,22 @@ public class SearchUtil {
                 JSONObject restObj = (JSONObject)restaurants.get(idx);
                 Log.d("LOCATION", restObj.get("location").toString());
                 Log.d("ADDRESS", ((JSONObject)restObj.get("location")).get("address").toString());
+                Log.d("ID", restObj.get("id").toString());
 
                 Log.d("DISPLAY PHONE", restObj.get("display_phone").toString());
                 Log.d("URL", restObj.get("image_url").toString());
+                Log.d("ADDRESS", ((JSONObject) restObj.get("location")).get("address").toString());
 
 
                 restaurant.setAddress(((JSONObject) restObj.get("location")).get("address").toString());
                 restaurant.setPhone(restObj.get("display_phone").toString());
                 restaurant.setImage(restObj.get("image_url").toString());
+                restaurant.setRestaurantName(restObj.get("name").toString());
+
                 // Read reviews should be from the listings page if the user clicks on the particular restaurant. This may affect design of retrieval of old search items if the reviews
                 // have never been populated by the user.
-                OAuthRequest reviewRequest = new OAuthRequest(Verb.GET, restObj.get("url").toString());
+
+                OAuthRequest reviewRequest = new OAuthRequest(Verb.GET, "http://api.yelp.com/v2/business/" +restObj.get("id").toString() );
                 this.service.signRequest(this.accessToken, reviewRequest);
                 Response reviewResponse = reviewRequest.send();
 
@@ -110,6 +117,7 @@ public class SearchUtil {
                 }
 
                 JSONArray reviews = (JSONArray) tempreview.get("reviews");
+                //JSONArray reviews = (JSONArray) restObj.get("reviews");
 
                 Log.d("NUM RES REVIEWS", Integer.toString(reviews.size()));
 
@@ -129,10 +137,6 @@ public class SearchUtil {
             }
 
             return result;
-        } //catch (JSONException e) {
-          //  Log.d("YELP search failed:", e.getMessage());
-       // }
+        }
 
-        //return null;
-    //}
 }

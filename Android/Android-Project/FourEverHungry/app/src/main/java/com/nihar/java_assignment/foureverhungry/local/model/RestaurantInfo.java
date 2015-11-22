@@ -9,6 +9,7 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 /**
  * Created by Sudhir Ravi on 11/15/15.
  */
-public class RestaurantInfo {
+public class RestaurantInfo implements Serializable{
     private String name;
     private byte[] image;
     private String phone;

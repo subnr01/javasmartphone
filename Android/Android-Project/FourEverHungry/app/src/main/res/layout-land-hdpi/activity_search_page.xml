@@ -93,7 +93,7 @@
             <!-- This  is the layout for a search option  -->
 
             <LinearLayout
-                android:id="@+id/linearLayout2"
+                android:id="@+id/listingsParentLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="80dp"
