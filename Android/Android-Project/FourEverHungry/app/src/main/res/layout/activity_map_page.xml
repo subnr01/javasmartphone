@@ -27,26 +27,27 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+    <Button
+        android:layout_below="@+id/textView19"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:id="@+id/searchInfoButton"
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView13"
-        android:src="@drawable/mapviewsearchoptions"
-        android:layout_alignTop="@+id/textView19"
- />
+    </Button>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView13"
+        android:layout_marginTop="200dp"
         android:id="@+id/fragmentMapOuterLayout"
         >
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/restaurantMap"
-        android:layout_marginTop="200dp"
-        android:name="com.google.android.gms.maps.MapFragment"
-        />
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/restaurantMap"
+            android:name="com.google.android.gms.maps.MapFragment"
+            />
     </LinearLayout>
 </RelativeLayout>

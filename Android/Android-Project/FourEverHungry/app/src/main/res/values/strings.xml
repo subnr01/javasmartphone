@@ -25,18 +25,12 @@
         <item>1.1-2.0</item>
         <item>0.0-1.0</item>
     </string-array>
-    <string name="distance_prompt">ANY</string>
-    <string-array name="distances">
-        <item>Bird\'s-eye View</item>
-        <item>Driving</item>
-        <item>Biking</item>
-        <item>Walking</item>
-        <item>Within 4 blocks</item>
-    </string-array>
     <string-array name="saved_searches">
         <item>CMU_Thai</item>
         <item>Home_Italian</item>
         <item>Late_Night</item>
         <item>Misc</item>
     </string-array>
+    <string name="title_activity_maps">Map</string>
+    <string name="maxListings">15</string>
 </resources>

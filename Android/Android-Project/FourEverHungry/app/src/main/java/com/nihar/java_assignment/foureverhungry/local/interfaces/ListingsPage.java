@@ -18,17 +18,24 @@ import android.widget.RelativeLayout;
 
 import com.nihar.java_assignment.foureverhungry.R;
 import com.nihar.java_assignment.foureverhungry.local.model.RestaurantInfo;
+import com.nihar.java_assignment.foureverhungry.local.model.SearchInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListingsPage extends Activity implements View.OnClickListener{
     private ArrayList<RestaurantInfo> searchResults;
+    private SearchInfo searchInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listings_page);
         searchResults = (ArrayList<RestaurantInfo>) getIntent().getExtras().getSerializable("listings");
+        searchInfo = (SearchInfo) getIntent().getExtras().getSerializable("searchInfo");
+
+        if (searchResults == null) {
+            return;
+        }
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.listingsParentLayout);
         layout.removeAllViews();
@@ -84,6 +91,8 @@ public class ListingsPage extends Activity implements View.OnClickListener{
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("listings", searchResults);
+        bundle.putSerializable("searchInfo", searchInfo);
+
         Intent intent = new Intent(ListingsPage.this, MapPage.class);
         intent.putExtras(bundle);
         startActivity(intent);

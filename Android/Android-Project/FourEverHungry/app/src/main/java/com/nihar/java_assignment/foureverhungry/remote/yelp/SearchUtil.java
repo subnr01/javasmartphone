@@ -1,6 +1,8 @@
 package com.nihar.java_assignment.foureverhungry.remote.yelp;
 
 import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
 import android.media.session.MediaSession;
 import android.util.Log;
 
@@ -26,7 +28,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Sudhir Ravi on 11/15/15.
@@ -44,6 +49,7 @@ public class SearchUtil {
 
     public SearchUtil(SearchInfo searchInfo, Context context) {
         this.searchInfo = searchInfo;
+
         this.service = new ServiceBuilder().provider(YelpApi.class).apiKey(consumerKey).apiSecret(consumerSecret).build();
         this.accessToken = new Token(token, tokenSecret);
         this.context = context;
@@ -52,11 +58,35 @@ public class SearchUtil {
     public ArrayList<RestaurantInfo> search() {
         OAuthRequest request = new OAuthRequest(Verb.GET, "http://api.yelp.com/v2/search");
         Log.d("INPUT TO YELP CUISINE", searchInfo.getCuisine());
-        Log.d("INPUT TO YELP LOCATION", searchInfo.getLocation());
-        Log.d("INPUT TO YELP RADIUS", String.valueOf(searchInfo.getDistance()));
+        String locationQuery = searchInfo.getLocation();
+        double currLatitude = searchInfo.getLatitude();
+        double currLongitude = searchInfo.getLongitude();
 
+        if (locationQuery != null) {
+            Log.d("INPUT TO YELP LOCATION", locationQuery);
+        }
+        Log.d("INPUT TO YELP RADIUS", String.valueOf(searchInfo.getDistance()));
+        //if (currLatitude != 0.0 && currLongitude != 0.0) {
+            Log.d("INPUT TO YELP LATITUDE", String.valueOf(currLatitude));
+            Log.d("INPUT TO YELP LATITUDE", String.valueOf(currLongitude));
+        //}
         request.addQuerystringParameter("term", "food" + " " + searchInfo.getCuisine());
-        request.addQuerystringParameter("location", searchInfo.getLocation());
+        if (locationQuery != null) {
+            request.addQuerystringParameter("location", locationQuery);
+        } else {
+            // cll=37.77493,-122.419415
+            Geocoder gcd = new Geocoder(context, Locale.getDefault());
+            List<Address> addresses = null;
+            try {
+                addresses = gcd.getFromLocation(currLatitude, currLongitude, 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (addresses.size() > 0)
+                Log.d("SEARCH UTIL GOT CITY", addresses.get(0).getLocality());
+            request.addQuerystringParameter("location",addresses.get(0).getLocality() );
+            request.addQuerystringParameter("cll", currLatitude + "," + currLongitude);
+        }
         request.addQuerystringParameter("radius_filter", String.valueOf((int) searchInfo.getDistance()));
 
         /* Should be less than 20 according to API documentation */
