@@ -64,7 +64,7 @@
 
 
                     <ImageView
-                        android:id="@+id/imageView7"
+                        android:id="@+id/resImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="25dp"
@@ -73,7 +73,7 @@
                         android:src="@mipmap/dominos_logo" />
 
                     <ImageView
-                        android:id="@+id/imageView8"
+                        android:id="@+id/resRatingImage"
                         android:layout_width="wrap_content"
                         android:layout_marginTop="-10dp"
                         android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView15"
+                    android:id="@+id/restaurantInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dominos_info"
@@ -108,7 +108,7 @@
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="20dp"
-                android:id="@+id/linearLayout7">
+                android:id="@+id/outerReviewsLayout">
 
                 <TextView
                     android:layout_width="fill_parent"

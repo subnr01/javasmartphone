@@ -27,9 +27,11 @@ public class RestaurantInfo implements Serializable{
     private double rating;
     private byte[] ratingImg;
     private ArrayList<Review> reviews;
+    private LocationInfo location;
 
     public RestaurantInfo() {
         reviews = new ArrayList<Review>();
+        location = new LocationInfo();
     }
 
     public RestaurantInfo(String name, String phone, String address, String url) {
@@ -80,15 +82,32 @@ public class RestaurantInfo implements Serializable{
         return rating;
     }
 
-    public void setRatingURL(String url) {
+    public ArrayList<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setRatingImg(String url) {
         this.ratingImg = ImageReader.readImage(url);
     }
 
-    public byte[] getRatingURL() {
+    public byte[] getRatingImg() {
         return ratingImg;
     }
 
     public void addReview(Review review) {
         reviews.add(review);
+    }
+
+    public void setLocation(double latitude, double longitude) {
+        location.setLatitude(latitude);
+        location.setLongitude(longitude);
+    }
+
+    public double getLatitude() {
+        return location.getLatitude();
+    }
+
+    public double getLongitude() {
+        return location.getLongitude();
     }
 }

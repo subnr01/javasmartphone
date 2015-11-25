@@ -1,5 +1,6 @@
 package com.nihar.java_assignment.foureverhungry.remote.yelp;
 
+import android.content.Context;
 import android.media.session.MediaSession;
 import android.util.Log;
 
@@ -7,6 +8,7 @@ import com.nihar.java_assignment.foureverhungry.local.model.RestaurantInfo;
 import com.nihar.java_assignment.foureverhungry.local.model.Review;
 import com.nihar.java_assignment.foureverhungry.local.model.SearchInfo;
 
+import com.nihar.java_assignment.foureverhungry.R;
 //import org.json.JSONArray;
 //import org.json.JSONException;
 //import org.json.JSONObject;
@@ -34,15 +36,17 @@ public class SearchUtil {
     private final String consumerSecret = "l640aej7VUFj-u8NCjQniizWRSw";
     private final String token ="afsNscleumSppliqxJIHrNok8SglDjsp";
     private final String tokenSecret = "ZucLA7CGZvIbqBP1ehOa4q-R3Ys";
+    private Context context;
 
     private SearchInfo searchInfo;
     OAuthService service;
     Token accessToken;
 
-    public SearchUtil(SearchInfo searchInfo) {
+    public SearchUtil(SearchInfo searchInfo, Context context) {
         this.searchInfo = searchInfo;
         this.service = new ServiceBuilder().provider(YelpApi.class).apiKey(consumerKey).apiSecret(consumerSecret).build();
         this.accessToken = new Token(token, tokenSecret);
+        this.context = context;
     }
 
     public ArrayList<RestaurantInfo> search() {
@@ -55,7 +59,9 @@ public class SearchUtil {
         request.addQuerystringParameter("location", searchInfo.getLocation());
         request.addQuerystringParameter("radius_filter", String.valueOf((int) searchInfo.getDistance()));
 
-        request.addQuerystringParameter("limit", String.valueOf(10));
+        /* Should be less than 20 according to API documentation */
+        Log.d("LIMITING RESULTS TO ", context.getString(R.string.maxListings));
+        request.addQuerystringParameter("limit", context.getString(R.string.maxListings));
 
         Log.d("YELP REQUEST QUERY", request.toString());
         this.service.signRequest(this.accessToken, request);
@@ -76,30 +82,72 @@ public class SearchUtil {
                 return null;
             }
             JSONArray restaurants = (JSONArray) temp.get("businesses");
+        if (restaurants == null) {
+            return null;
+        }
             Log.d("NUM RES RESPONSES", String.valueOf(restaurants.size()));
             for(int idx = 0; idx < restaurants.size(); idx++) {
                 RestaurantInfo restaurant = new RestaurantInfo();
                 Log.d("REST NO" + idx, restaurants.get(idx).toString());
 
-                JSONObject restObj = (JSONObject)restaurants.get(idx);
-                Log.d("LOCATION", restObj.get("location").toString());
-                Log.d("ADDRESS", ((JSONObject)restObj.get("location")).get("address").toString());
-                Log.d("ID", restObj.get("id").toString());
+                JSONObject restObj = (JSONObject) restaurants.get(idx);
 
-                Log.d("DISPLAY PHONE", restObj.get("display_phone").toString());
-                Log.d("URL", restObj.get("image_url").toString());
-                Log.d("ADDRESS", ((JSONObject) restObj.get("location")).get("address").toString());
+                if (restObj.get("id") != null) {
+                    Log.d("ID", restObj.get("id").toString());
+                }
+                if (restObj.get("review_count") != null) {
+                    Log.d("NUM REVIEWS", (restObj.get("review_count").toString()));
+                }
 
 
-                restaurant.setAddress(((JSONObject) restObj.get("location")).get("address").toString());
-                restaurant.setPhone(restObj.get("display_phone").toString());
-                restaurant.setImage(restObj.get("image_url").toString());
-                restaurant.setRestaurantName(restObj.get("name").toString());
+                JSONObject location = (JSONObject) restObj.get("location");
+                if (location == null) {
+                    Log.d("LOCATION", "NULL");
+                    continue;
+                }
+                JSONObject coordinate = (JSONObject) location.get("coordinate");
+                if (coordinate == null) {
+                    Log.d("COORDINATE", "NULL");
+                    continue;
+                }
+                double latitude = (double) coordinate.get("latitude");
+
+                double longitude = (double) coordinate.get("longitude");
+
+                //Log.d("Latitude", (.get("latitude").toString());
+                //Log.d("Longitude", ((JSONObject) restObj.get("center")).get("longitude").toString());
+
+                if (restObj.get("location") != null && ((JSONObject) restObj.get("location")).get("address") != null) {
+                    Log.d("LOCATION", restObj.get("location").toString());
+                    Log.d("ADDRESS", ((JSONObject) restObj.get("location")).get("address").toString());
+                    restaurant.setAddress(((JSONObject) restObj.get("location")).get("address").toString());
+            }
+                if (restObj.get("display_phone") != null) {
+                    Log.d("DISPLAY PHONE", restObj.get("display_phone").toString());
+                    restaurant.setPhone(restObj.get("display_phone").toString());
+                }
+                if (restObj.get("image_url") != null) {
+                    Log.d("URL", restObj.get("image_url").toString());
+                    restaurant.setImage(restObj.get("image_url").toString());
+                }
+                if (restObj.get("name") != null) {
+                    restaurant.setRestaurantName(restObj.get("name").toString());
+                }
+                if (restObj.get("rating_img_url_large") != null) {
+                    restaurant.setRatingImg(restObj.get("rating_img_url_large").toString());
+                }
+                restaurant.setLocation(latitude,
+                        longitude);
+
 
                 // Read reviews should be from the listings page if the user clicks on the particular restaurant. This may affect design of retrieval of old search items if the reviews
                 // have never been populated by the user.
 
-                OAuthRequest reviewRequest = new OAuthRequest(Verb.GET, "http://api.yelp.com/v2/business/" +restObj.get("id").toString() );
+                if (restObj.get("id") == null) {
+                    continue;
+                }
+
+                OAuthRequest reviewRequest = new OAuthRequest(Verb.GET, "http://api.yelp.com/v2/business/" + restObj.get("id").toString() );
                 this.service.signRequest(this.accessToken, reviewRequest);
                 Response reviewResponse = reviewRequest.send();
 
@@ -119,15 +167,22 @@ public class SearchUtil {
                 JSONArray reviews = (JSONArray) tempreview.get("reviews");
                 //JSONArray reviews = (JSONArray) restObj.get("reviews");
 
+                if (reviews == null) {
+                    continue;
+                }
                 Log.d("NUM RES REVIEWS", Integer.toString(reviews.size()));
 
                 for(int jdx = 0; jdx < reviews.size(); jdx++) {
+
                     Log.d("REVIEW NO" + jdx, reviews.get(jdx).toString());
                     JSONObject reviewObject = (JSONObject)reviews.get(jdx);
                     Log.d("REVIEW EXCERPT", reviewObject.get("excerpt").toString());
                     Log.d("REVIEW USER URL", ((JSONObject)reviewObject.get("user")).get("image_url").toString());
+                    Log.d("REVIEW USER NAME", ((JSONObject)reviewObject.get("user")).get("name").toString());
 
-                    Review review = new Review(reviewObject.get("excerpt").toString(),
+                    Review review = new Review(
+                            ((JSONObject)reviewObject.get("user")).get("name").toString(),
+                            reviewObject.get("excerpt").toString(),
                             ((JSONObject)reviewObject.get("user")).get("image_url").toString());
                     restaurant.addReview(review);
 

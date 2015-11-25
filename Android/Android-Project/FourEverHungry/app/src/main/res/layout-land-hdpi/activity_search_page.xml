@@ -80,7 +80,7 @@
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <EditText
-                    android:id="@+id/editText"
+                    android:id="@+id/inputLocation"
                     android:layout_width="140dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="30dp"
@@ -111,7 +111,7 @@
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <EditText
-                    android:id="@+id/editText2"
+                    android:id="@+id/inputCuisine"
                     android:layout_width="140dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="30dp"
@@ -147,15 +147,13 @@
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/inputDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:layout_marginStart="20dp"
 
-                android:entries="@array/distances"
                 android:maxWidth="140dp"
-                android:prompt="@string/distance_prompt"
                 android:spinnerMode="dropdown"
                 android:textAlignment="center" />
         </LinearLayout>

@@ -27,15 +27,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView14"
-        android:src="@drawable/mapview"
-        android:layout_marginBottom="95dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/imageView12"
-        android:layout_toStartOf="@+id/imageView12" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -43,6 +34,19 @@
         android:id="@+id/imageView13"
         android:src="@drawable/mapviewsearchoptions"
         android:layout_alignTop="@+id/textView19"
-        android:layout_alignLeft="@+id/imageView14"
-        android:layout_alignStart="@+id/imageView14" />
+ />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView13"
+        android:id="@+id/fragmentMapOuterLayout"
+        >
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/restaurantMap"
+        android:layout_marginTop="200dp"
+        android:name="com.google.android.gms.maps.MapFragment"
+        />
+    </LinearLayout>
 </RelativeLayout>

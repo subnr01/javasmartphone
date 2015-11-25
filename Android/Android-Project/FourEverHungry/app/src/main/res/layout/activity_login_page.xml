@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/inputCuisine"
         android:hint="E-mail ID"
         android:gravity="center"
         android:layout_marginTop="45dp"
@@ -51,7 +51,7 @@
         android:hint="Password"
         android:ellipsize="start"
         android:layout_marginTop="25dp"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/inputCuisine"
         android:layout_centerHorizontal="true" />
 
     <Button

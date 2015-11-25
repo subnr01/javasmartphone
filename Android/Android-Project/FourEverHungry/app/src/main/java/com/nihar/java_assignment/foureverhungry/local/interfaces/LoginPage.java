@@ -20,16 +20,16 @@ public class LoginPage extends Activity {
 
     public void goToWelcomePage(View sender) {
         String email, password;
-        EditText et = (EditText)findViewById(R.id.editText2);
+        EditText et = (EditText)findViewById(R.id.inputCuisine);
         email = et.getText().toString();
-        et = (EditText)findViewById(R.id.editText2);
+        et = (EditText)findViewById(R.id.inputCuisine);
         password = et.getText().toString();
 
         UserInfo login = new UserInfo(email, password);
         if(login.authenticate()) {
             Intent intent = new Intent(LoginPage.this, WelcomePage.class);
             startActivity(intent);
-            finish();
+            //finish();
         } else {
             Toast toast = Toast.makeText(this, "e-mail/password is incorrect. Please check", Toast.LENGTH_LONG);
             toast.show();
@@ -39,6 +39,6 @@ public class LoginPage extends Activity {
     public void goToRegistrationPage(View sender) {
         Intent intent = new Intent(LoginPage.this, RegistrationPage.class);
         startActivity(intent);
-        finish();
+        //finish();
     }
 }

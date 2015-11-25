@@ -31,9 +31,9 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView7"
+        android:id="@+id/resImage"
         android:src="@mipmap/dominos_logo"
-        android:layout_alignTop="@+id/textView15"
+        android:layout_alignTop="@+id/restaurantInfo"
         android:layout_toLeftOf="@+id/textView4"
         android:layout_toStartOf="@+id/textView4"
         android:layout_marginRight="25dp"
@@ -42,18 +42,18 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView8"
+        android:id="@+id/resRatingImage"
         android:src="@drawable/stars_4_5"
-        android:layout_below="@+id/imageView7"
-        android:layout_alignLeft="@+id/imageView7"
-        android:layout_alignStart="@+id/imageView7" />
+        android:layout_below="@+id/resImage"
+        android:layout_alignLeft="@+id/resImage"
+        android:layout_alignStart="@+id/resImage" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/dominos_info"
-        android:id="@+id/textView15"
+        android:id="@+id/restaurantInfo"
         android:gravity="center"
         android:textSize="18dp"
         android:layout_below="@+id/imageView3"
@@ -64,7 +64,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView8"
+        android:layout_below="@+id/resRatingImage"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/linearLayout6"
@@ -76,35 +76,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageView9"
-            android:layout_below="@+id/textView15"
-            android:layout_alignLeft="@+id/imageView8"
-            android:layout_alignStart="@+id/imageView8"
+            android:layout_below="@+id/restaurantInfo"
+            android:layout_alignLeft="@+id/resRatingImage"
+            android:layout_alignStart="@+id/resRatingImage"
             android:layout_marginLeft="20dp"
             android:src="@drawable/phone_icon"
  />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView10"
-            android:layout_below="@+id/textView15"
-            android:layout_alignLeft="@+id/imageView8"
-            android:layout_alignStart="@+id/imageView8"
-            android:layout_marginLeft="20dp"
-            android:src="@drawable/fb_logo"
-            />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Write Review"
-            android:id="@+id/button17"
-            android:layout_marginLeft="20dp"
-            android:layout_below="@+id/linearLayout6"
-            android:layout_alignLeft="@+id/textView15"
-            android:layout_alignStart="@+id/textView15"
-
-/>
 
     </LinearLayout>
 
@@ -131,7 +109,7 @@
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:id="@+id/linearLayout7">
+                android:id="@+id/outerReviewsLayout">
 
                 <TextView
                     android:layout_width="fill_parent"

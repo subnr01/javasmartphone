@@ -20,8 +20,10 @@ import java.nio.ByteBuffer;
 public class Review implements Serializable{
     private byte[] image;
     private String comment;
+    private String name;
 
-    public Review( String comment, String url) {
+    public Review( String name, String comment, String url) {
+        this.name = name;
         this.comment = comment;
         this.image = ImageReader.readImage(url);
     }
@@ -32,6 +34,14 @@ public class Review implements Serializable{
 
     public String getComment() {
         return comment;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public byte[] getImage(){

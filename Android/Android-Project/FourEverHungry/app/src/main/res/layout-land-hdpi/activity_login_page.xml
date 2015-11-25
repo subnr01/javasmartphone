@@ -23,16 +23,16 @@
         android:paddingLeft="-10dp"
         android:id="@+id/imageView5"
         android:src="@drawable/logo"
-        android:layout_above="@+id/editText2"
-        android:layout_toRightOf="@+id/editText2"
-        android:layout_toEndOf="@+id/editText2" />
+        android:layout_above="@+id/inputCuisine"
+        android:layout_toRightOf="@+id/inputCuisine"
+        android:layout_toEndOf="@+id/inputCuisine" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/inputCuisine"
         android:hint="E-mail ID"
         android:gravity="center"
         android:layout_below="@+id/textView12"
@@ -48,7 +48,7 @@
         android:gravity="center"
         android:hint="Password"
         android:ellipsize="start"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/inputCuisine"
         android:layout_centerHorizontal="true" />
 
     <Button

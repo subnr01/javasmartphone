@@ -3,7 +3,12 @@ package com.nihar.java_assignment.foureverhungry.local.interfaces;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,15 +20,14 @@ import com.nihar.java_assignment.foureverhungry.R;
 import com.nihar.java_assignment.foureverhungry.local.model.RestaurantInfo;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ListingsPage extends Activity {
-
+public class ListingsPage extends Activity implements View.OnClickListener{
+    private ArrayList<RestaurantInfo> searchResults;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listings_page);
-        ArrayList<RestaurantInfo> searchResults = null;
-
         searchResults = (ArrayList<RestaurantInfo>) getIntent().getExtras().getSerializable("listings");
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.listingsParentLayout);
@@ -35,10 +39,31 @@ public class ListingsPage extends Activity {
         for (int i = 0; i < searchResults.size(); i++) {
 
             Button btn = new Button(this);
-
+            RestaurantInfo res = searchResults.get(i);
             //btn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            btn.setText(searchResults.get(i).getRestaurantName());
+            btn.setText(res.getRestaurantName());
+            byte[] data = res.getImage();
+            /* This got hit once when the app did not respond for a long time. probably a network latency or some other issue.
+            seen more than once, but reproducible rarely
+             */
+            if (data == null) {
+                continue;
+            }
+            Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+            Drawable drawImg = new BitmapDrawable(getResources(), bmp);
 
+            data = res.getRatingImg();
+            bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+            Drawable drawRatingImg = new BitmapDrawable(getResources(), bmp);
+
+            //draw.setBounds();
+            btn.setCompoundDrawablesWithIntrinsicBounds(drawImg, null, drawRatingImg, null);
+           // btn.clic
+
+            btn.setOnClickListener(this);
+
+            // use a macro instead.
+            btn.setHeight(200);
             btn.setId(i);
             layout.addView(btn);
         }
@@ -49,13 +74,23 @@ public class ListingsPage extends Activity {
     public void goToDetailedView(View sender) {
         Intent intent = new Intent(ListingsPage.this, DetailedView.class);
         startActivity(intent);
-        finish();
+        //finish();
     }
 
     public void goToMapView(View sender) {
+        /* One aoption is to send only the restaurant names and locations. But if the map view needs
+         * navigation to the detailed listings page it is better to send the entire listings structure.
+         */
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("listings", searchResults);
         Intent intent = new Intent(ListingsPage.this, MapPage.class);
+        intent.putExtras(bundle);
         startActivity(intent);
-        finish();
+        Log.d("LISTINGS PAGE", "MAP PAGE STARTED");
+        //finish();
+        Log.d("LISTINGS PAGE", "MAP PAGE FINISHED");
+
     }
 
     public void saveSearch(View sender) {
@@ -64,5 +99,20 @@ public class ListingsPage extends Activity {
         alertDialog.setMessage("Search saved");
         alertDialog.show();
         return;
+    }
+
+    @Override
+    public void onClick(View v) {
+        int viewId = v.getId();
+        if (viewId < searchResults.size()) {
+            Log.d("LISTINGSPAGE", "RESTAURANT LINK CLICKED ID: " + viewId);
+            RestaurantInfo res = searchResults.get(viewId);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("restaurant", res);
+            Intent intent = new Intent(ListingsPage.this, DetailedView.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+            //finish();
+        }
     }
 }
