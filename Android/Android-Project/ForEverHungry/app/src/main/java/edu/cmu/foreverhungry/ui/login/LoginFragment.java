@@ -17,9 +17,7 @@ import android.widget.ImageView;
 import edu.cmu.foreverhungry.R;
 
 
-/**
- * Fragment for the user login screen.
- */
+
 public class LoginFragment extends LoginFragmentBase {
 
     private static final String TAG = "LoginFragment";

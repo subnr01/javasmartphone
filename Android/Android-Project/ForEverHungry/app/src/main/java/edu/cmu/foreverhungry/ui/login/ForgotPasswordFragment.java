@@ -14,13 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import edu.cmu.foreverhungry.R;
-import edu.cmu.foreverhungry.ui.login.ForgotPasswordSuccessListener;
-import edu.cmu.foreverhungry.ui.login.LoginFragmentBase;
 
 
-/**
- * Fragment for the login help screen for resetting the user's password.
- */
+
+
 public class ForgotPasswordFragment extends LoginFragmentBase implements OnClickListener {
 
 
@@ -31,7 +28,7 @@ public class ForgotPasswordFragment extends LoginFragmentBase implements OnClick
     private ForgotPasswordSuccessListener forgotPasswordSuccessListener;
 
 
-    private static final String LOG_TAG = "ParseLoginHelpFragment";
+    private static final String TAG = "ForgotPasswordFragment";
 
 
     @Override

@@ -4,7 +4,7 @@ package edu.cmu.foreverhungry.ui.login;
  */
 
 import android.app.Activity;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +12,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+
 import android.widget.Toast;
 
 import edu.cmu.foreverhungry.R;
 
-/**
- * Fragment for the user signup screen.
- */
+
 public class RegisterFragment extends LoginFragmentBase implements OnClickListener {
 
 
@@ -93,7 +91,6 @@ public class RegisterFragment extends LoginFragmentBase implements OnClickListen
         } else if (password.length() == 0) {
             showToast(R.string.no_password_toast);
         } else if (password.length() < minPasswordLength) {
-            //showToast(R.string.no_password_toast);
             showToast(getResources().getQuantityString(
                     R.plurals.password_too_short_toast,
                     minPasswordLength, minPasswordLength));

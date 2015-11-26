@@ -67,16 +67,14 @@ public class LoginScreenActivity extends FragmentActivity implements
 
 
     public void onClickSuccess() {
-        // Display the login form, which is the previous item onto the stack
+
         getSupportFragmentManager().popBackStackImmediate();
     }
 
 
 
 
-    /**
-     * Called when the user clicked the log in button on the login form.
-     */
+
     @Override
     public void onForgotPasswordClicked() {
         // Show the login help form for resetting the user's password.
@@ -92,18 +90,11 @@ public class LoginScreenActivity extends FragmentActivity implements
     }
 
 
-    /**
-     * Called when the user clicked the sign up button on the login form.
-     */
+
     @Override
     public void OnRegisterClicked(String username, String password) {
-        // Show the signup form, but keep the transaction on the back stack
-        // so that if the user clicks the back button, they are brought back
-        // to the login form.
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        //transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
-        // R.anim.enter_from_left, R.anim.exit_to_right);
 
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         RegisterFragment registerFragment = new RegisterFragment();
         transaction.replace(fragmentContainer,registerFragment);
         transaction.addToBackStack(null);
