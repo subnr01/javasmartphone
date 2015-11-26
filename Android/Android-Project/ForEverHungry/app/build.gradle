@@ -1,0 +1,33 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion '22.0.1'
+    defaultConfig {
+        applicationId "edu.cmu.foreverhungry"
+        minSdkVersion 21
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile files('Parse-1.8.4.jar')
+    compile files('libs/scribe-1.2.1.jar')
+    compile files('libs/commons-codec-1.7.jar')
+    compile files('libs/json-simple-1.1.1.jar')
+    compile 'com.google.android.gms:play-services:8.3.0'
+}

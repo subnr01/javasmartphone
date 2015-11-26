@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+
+
+    android:layout_height="match_parent"
+
+
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+
+
+    tools:context="edu.cmu.foreverhungry.ui.restaurant.Listings">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/app_name"
+        android:id="@+id/textView10"
+        android:textSize="@dimen/title_text_size"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/activity_title_top_margin" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView4"
+        android:src="@drawable/logo2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <!-- This linear layout is only to set maximum height of scroll bar -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_below="@+id/imageView4"
+        android:layout_height="250dp"
+        android:layout_marginTop="30dp"
+        android:background="#00ffffff"
+        android:id="@+id/linearLayout5">
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView"
+            android:fillViewport="true"
+            android:clickable="true">
+            <!--
+                    android:scrollIndicators="right"
+            -->
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/listingsParentLayout">
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Domino's Pizza"
+                    android:drawableLeft="@drawable/dominos_logo"
+                    android:drawableRight="@drawable/stars_5"
+                    android:maxHeight="@dimen/listing_maxHeight"
+                    android:id="@+id/button4"
+                    android:onClick="goToDetailedView" />
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Papa John's Pizza"
+                    android:drawableLeft="@drawable/papajohns_logo"
+                    android:drawableRight="@drawable/stars_4_5"
+                    android:maxHeight="@dimen/listing_maxHeight"
+                    android:id="@+id/button5" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mandy's Pizza"
+                    android:drawableLeft="@drawable/mandy_logo"
+                    android:drawableRight="@drawable/stars_4_5"
+                    android:maxHeight="@dimen/listing_maxHeight"
+                    android:id="@+id/button6" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="B's Pizza"
+                    android:drawableLeft="@drawable/mandy_logo"
+                    android:drawableRight="@drawable/stars_4_5"
+                    android:maxHeight="@dimen/listing_maxHeight"
+                    android:id="@+id/button7" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="C's Pizza"
+                    android:drawableLeft="@drawable/mandy_logo"
+                    android:drawableRight="@drawable/stars_4_5"
+                    android:maxHeight="@dimen/listing_maxHeight"
+                    android:id="@+id/button8" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="D's Pizza"
+                    android:drawableLeft="@drawable/mandy_logo"
+                    android:drawableRight="@drawable/stars_4_5"
+                    android:maxHeight="@dimen/listing_maxHeight"
+                    android:id="@+id/button9" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="E's Pizza"
+                    android:drawableLeft="@drawable/mandy_logo"
+                    android:drawableRight="@drawable/stars_4_5"
+                    android:maxHeight="@dimen/listing_maxHeight"
+                    android:id="@+id/button10" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="F's Pizza"
+                    android:drawableLeft="@drawable/mandy_logo"
+                    android:drawableRight="@drawable/stars_4_5"
+                    android:maxHeight="@dimen/listing_maxHeight"
+                    android:id="@+id/button11" />
+
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show on Map"
+        android:id="@+id/button12"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/linearLayout5"
+        android:layout_centerHorizontal="true"
+        android:onClick="goToMapView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Search"
+        android:id="@+id/button13"
+        android:layout_below="@+id/button12"
+        android:layout_centerHorizontal="true"
+        android:onClick="saveSearch" />
+
+
+
+</RelativeLayout>
