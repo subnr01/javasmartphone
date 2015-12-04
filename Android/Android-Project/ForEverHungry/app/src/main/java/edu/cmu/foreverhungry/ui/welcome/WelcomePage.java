@@ -1,4 +1,8 @@
 package edu.cmu.foreverhungry.ui.welcome;
+/**
+ * Created by subs on 11/25/15.
+ */
+
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,7 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
+import android.view.Menu;
 import com.squareup.picasso.Picasso;
 
 import java.util.Random;
@@ -28,7 +32,7 @@ public class WelcomePage extends Activity {
     }
 
     public void goToSearchPage(View sender) {
-        Intent intent = new Intent(WelcomePage.this, SearchPage.class);
+        Intent intent = new Intent(WelcomePage.this, SearchOptionsPage.class);
         startActivity(intent);
         //finish();
     }
@@ -37,6 +41,14 @@ public class WelcomePage extends Activity {
         startActivity(intent);
         //finish();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.base, menu);
+        return true;
+    }
+
+
 
     private void randomImage() {
         Random rand = new Random();

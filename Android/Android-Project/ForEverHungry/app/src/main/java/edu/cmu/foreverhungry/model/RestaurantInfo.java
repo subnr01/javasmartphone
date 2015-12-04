@@ -29,6 +29,8 @@ public class RestaurantInfo implements Serializable{
     private byte[] ratingImg;
     private ArrayList<Review> reviews;
     private LocationInfo location;
+    private String image_url;
+    private String ratingImgURL;
 
     public RestaurantInfo() {
         reviews = new ArrayList<Review>();
@@ -71,9 +73,19 @@ public class RestaurantInfo implements Serializable{
         this.image = ImageReader.readImage(url);
     }
 
+    public void setImageURL(String url) {
+        this.image_url = url;
+    }
+
+
     public byte[] getImage() {
         return image;
     }
+
+    public String getImageURL() {
+        return image_url;
+    }
+
 
     public void setRating(double rating) {
         this.rating = rating;
@@ -94,6 +106,16 @@ public class RestaurantInfo implements Serializable{
     public byte[] getRatingImg() {
         return ratingImg;
     }
+
+
+    public void setRatingImgURL(String url) {
+        this.ratingImgURL = url;
+    }
+
+    public String getRatingImgURL() {
+        return ratingImgURL;
+    }
+
 
     public void addReview(Review review) {
         reviews.add(review);

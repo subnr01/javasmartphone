@@ -153,12 +153,14 @@ public class SearchUtil {
             if (restObj.get("image_url") != null) {
                 Log.d("URL", restObj.get("image_url").toString());
                 restaurant.setImage(restObj.get("image_url").toString());
+                restaurant.setImageURL(restObj.get("image_url").toString());
             }
             if (restObj.get("name") != null) {
                 restaurant.setRestaurantName(restObj.get("name").toString());
             }
             if (restObj.get("rating_img_url_large") != null) {
                 restaurant.setRatingImg(restObj.get("rating_img_url_large").toString());
+                restaurant.setRatingImgURL(restObj.get("rating_img_url_large").toString());
             }
             restaurant.setLocation(latitude,
                     longitude);

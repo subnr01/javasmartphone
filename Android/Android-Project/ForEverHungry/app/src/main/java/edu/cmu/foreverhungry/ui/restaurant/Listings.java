@@ -19,7 +19,13 @@ import edu.cmu.foreverhungry.model.*;
 import edu.cmu.foreverhungry.R;
 import edu.cmu.foreverhungry.ui.maps.*;
 
+/*
 
+CURRENTLY THIS CLASS IS NOT USED, NEED
+TO REMOVE IN FINAL
+
+
+ */
 
 
 public class Listings extends Activity implements View.OnClickListener{

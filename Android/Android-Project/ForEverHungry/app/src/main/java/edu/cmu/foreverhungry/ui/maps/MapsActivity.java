@@ -34,6 +34,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<RestaurantInfo> list;
     private Context context;
 
+    public MapsActivity() {}
+
     public MapsActivity(ArrayList<RestaurantInfo> list, Context context) {
         Log.d("MAP ACTIVITY", "CONSTRUCTOR");
 

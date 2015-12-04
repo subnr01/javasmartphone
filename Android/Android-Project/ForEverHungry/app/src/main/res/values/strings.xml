@@ -43,7 +43,7 @@
     <string name="register_button_label">Register</string>
     <string name="forgot_password_label"><u>Forgot password</u></string>
     <string name="create_account_button_label">Create account</string>
-
+    <string name="logout">logout</string>
 
 
     <string name="login_help_instructions">Enter your email to recover your password</string>
@@ -74,6 +74,24 @@
     <string name="email_taken_toast">Email is already taken, please reset your password instead</string>
     <string name="no_name_toast">Please enter your name</string>
     <string name="signup_failed_unknown_toast">Could not sign up, please try again later</string>
+
+    <string name="input_search_name"> Enter search name</string>
+    <string name="save_search_name">save</string>
+    <string name="restaurantLabel">Restaurant</string> 
+    <string name="addressLabel">Address</string> 
+    <string name="descriptionLabel">Description</string>
+    <string name="favoriteLabel">Favorite</string>
+    <string name="detailsLabel">Details</string>
+    <string name="directionsLabel">Directions</string>
+    <string name="reportButtonText">Report</string>
+
+
+    <string name="placeholderRestaurantName">Restaurant Name</string>
+    <string name="placeholderAddress">address</string> 
+    <string name="placeholderDescription">description</string>
+
+
+
 
 
 

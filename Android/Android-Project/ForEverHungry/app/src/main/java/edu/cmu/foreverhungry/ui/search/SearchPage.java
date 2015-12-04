@@ -36,6 +36,14 @@ import edu.cmu.foreverhungry.ui.restaurant.*;
 import android.app.Activity;
 
 
+/*
+
+CURRENTLY THIS CLASS IS NOT USED, NEED
+TO REMOVE IN FINAL
+
+
+ */
+
 public class SearchPage extends Activity {
     private HashMap<String, Double> distanceMappings;
     private double latitude;
@@ -76,7 +84,7 @@ public class SearchPage extends Activity {
         location = inputLocation.getText().toString();
         if(location.equals("Current")) {
 
-            // check if enabled and if not send user to the GSP settings
+            // check if enabled and if not send user to the GPS settings
             // Better solution would be to display a dialog and suggesting to
             // go to the settings
             if (!enabled) {

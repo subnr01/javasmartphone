@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_height="match_parent"
+
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context="edu.cmu.foreverhungry.ui.welcome.WelcomePage"
     android:id="@+id/welcome_page">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,9 +17,9 @@
         android:text="@string/app_name"
         android:id="@+id/textView"
         android:textSize="@dimen/title_text_size"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/activity_title_top_margin" />
+        android:layout_alignTop="@+id/imageView"
+        android:layout_marginTop="30dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -25,7 +28,8 @@
         android:src="@drawable/logo2"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="70dp" />
 
     <TextView
         android:layout_width="wrap_content"
