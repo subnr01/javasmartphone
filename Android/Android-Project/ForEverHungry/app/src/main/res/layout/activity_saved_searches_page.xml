@@ -37,31 +37,32 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp" />
 
+
+    <!-- android:entries="@array/saved_searches" -->
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner3"
-        android:entries="@array/saved_searches"
+        android:id="@+id/spinnerSavedSearches"
         android:layout_below="@+id/textView18"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View"
-        android:id="@+id/button18"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/spinner3"
-        android:layout_centerHorizontal="true" />
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="View"
+    android:id="@+id/ViewButton"
+    android:layout_marginTop="30dp"
+    android:layout_below="@+id/spinnerSavedSearches"
+    android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Delete"
-        android:id="@+id/button19"
-        android:layout_marginTop="34dp"
-        android:layout_below="@+id/button18"
-        android:layout_centerHorizontal="true" />
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Delete"
+    android:id="@+id/DeleteButton"
+    android:layout_marginTop="34dp"
+    android:layout_below="@+id/ViewButton"
+    android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

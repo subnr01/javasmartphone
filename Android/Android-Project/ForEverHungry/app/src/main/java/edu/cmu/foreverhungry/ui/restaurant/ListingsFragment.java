@@ -211,26 +211,40 @@ public class ListingsFragment extends Fragment {
             SearchInfo searchInfo = new SearchInfo(locationInput, cuisineInput, distance, latitude, longitude);
             SearchUtil searchUtil = new SearchUtil(searchInfo, mContext);
             searchResults = searchUtil.search();
+            if (searchResults == null) {
+                return null;
+            }
             Log.v(TAG, "got " + searchResults.size() + " objects");
             //setup the adapter
             mAdapter = new ListingAdapter(getActivity(), searchResults);
+            // update this info in the fragment in the case that the search needs to be saved
+            SearchInfo saveInfo = new SearchInfo(locationInput, cuisineInput, distance, latitude, longitude);
+            Activity listing = getActivity();
+            if (listing != null) {
+                ((ListingsPage)listing).updateSearchInfo(saveInfo);
+            } else {
+                Log.d("LISTING FRAGMENT", "NULL ACTIVITY OBJECT");
+            }
             return searchResults;
        }
 
         @Override
         protected void onPostExecute(final List<RestaurantInfo> searchResults) {
-            Log.v("subbu1", "postExecute");
+            Log.v("subbu1", "ListingsFragment ShowListings postExecute");
             super.onPostExecute(searchResults);
             if (mAdapter == null) {
                 Log.v("subbu1", "adapter is null");
             }
 
-            //update UI with the adapter info
-            mRecyclerView.setAdapter(mAdapter);
-            if (searchResults.size() == 0) {
+            if (searchResults == null) {
+                mEmptyText.setVisibility(View.VISIBLE);
+            }
+            else if (searchResults.size() == 0) {
                 mEmptyText.setVisibility(View.VISIBLE);
             }
 
+            //update UI with the adapter info
+            mRecyclerView.setAdapter(mAdapter);
             mSwipeRefreshLayout.setRefreshing(false);
             mProgressBar.setVisibility(View.GONE);
             mProgressBar.setEnabled(true);

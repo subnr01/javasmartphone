@@ -64,7 +64,7 @@ public class SearchUtil {
         Log.d("INPUT TO YELP LATITUDE", String.valueOf(currLatitude));
         Log.d("INPUT TO YELP LATITUDE", String.valueOf(currLongitude));
         //}
-        request.addQuerystringParameter("term", "food" + " " + searchInfo.getCuisine());
+        request.addQuerystringParameter("term", "food restaurant " + " " + searchInfo.getCuisine());
         if (locationQuery != null) {
             request.addQuerystringParameter("location", locationQuery);
         } else {
@@ -171,6 +171,8 @@ public class SearchUtil {
 
             if (restObj.get("id") == null) {
                 continue;
+            } else {
+                restaurant.setResID(restObj.get("id").toString());
             }
 
             OAuthRequest reviewRequest = new OAuthRequest(Verb.GET, "http://api.yelp.com/v2/business/" + restObj.get("id").toString() );

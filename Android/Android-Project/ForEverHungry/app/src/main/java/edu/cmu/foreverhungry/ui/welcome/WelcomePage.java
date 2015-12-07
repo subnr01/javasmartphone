@@ -34,12 +34,10 @@ public class WelcomePage extends Activity {
     public void goToSearchPage(View sender) {
         Intent intent = new Intent(WelcomePage.this, SearchOptionsPage.class);
         startActivity(intent);
-        //finish();
     }
     public void goToSavedSearches(View sender) {
         Intent intent = new Intent(WelcomePage.this, SavedSearchesPage.class);
         startActivity(intent);
-        //finish();
     }
 
     @Override

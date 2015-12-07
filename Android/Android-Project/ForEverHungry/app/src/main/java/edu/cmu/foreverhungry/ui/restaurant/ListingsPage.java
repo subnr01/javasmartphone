@@ -16,6 +16,9 @@ import android.support.v4.app.FragmentTransaction;
 
 import android.os.Bundle;
 import edu.cmu.foreverhungry.R;
+import edu.cmu.foreverhungry.model.RestaurantInfo;
+import edu.cmu.foreverhungry.model.SearchInfo;
+import edu.cmu.foreverhungry.services.database.databaseConnector;
 
 import android.text.InputType;
 import android.util.Log;
@@ -30,6 +33,9 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.software.shell.fab.ActionButton;
+
+import java.util.Collections;
+import java.util.List;
 
 
 
@@ -50,9 +56,11 @@ public class ListingsPage extends FragmentActivity {
     private double Latitude;
     private double Longitude;
     private double Distance;
+    private databaseConnector db;
 
     private LocationManager locationManager;
     private boolean onLocationFound = false;
+    private SearchInfo mObjects;
 
     final static private int minTime = 0; // in ms
     final static private int minDistance = 0;// in meters
@@ -62,7 +70,7 @@ public class ListingsPage extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listings_page);
         onLocationFound = false;
-
+        db = new databaseConnector(this);
 
         /* Get the user input from the previous activity */
         String dist = getIntent().getStringExtra("distance");
@@ -71,7 +79,7 @@ public class ListingsPage extends FragmentActivity {
 
         /* converting back to double */
         Distance = Double.parseDouble(dist);
-
+        mObjects = null;
 
 
         /* Setup the elevated button */
@@ -99,6 +107,7 @@ public class ListingsPage extends FragmentActivity {
 
     public void saveSearch(Context mContext)
     {
+        Log.d("ListingsPage", "Came to SaveSearch");
         // Create dialog
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
@@ -133,8 +142,14 @@ public class ListingsPage extends FragmentActivity {
 
                     //@TODO
                     //Update database with the search information.
-                    Toast.makeText(getApplicationContext(), "Thank you!", Toast.LENGTH_SHORT).show();
-
+                    boolean saveSearch;
+                    saveSearch = saveSearchToDataBase(value);
+                    if (saveSearch) {
+                        Toast.makeText(getApplicationContext(), "Thank you!", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "Could not save the result!", Toast.LENGTH_SHORT).show();
+                    }
                 } else { // Send error toast if description is too short
                     Toast.makeText(getApplicationContext(), "Save FAILED!!! Minimum 5 letters needed",
                             Toast.LENGTH_SHORT).show();
@@ -159,6 +174,8 @@ public class ListingsPage extends FragmentActivity {
         alert.show();
 
 
+
+
     }
 
 
@@ -171,10 +188,13 @@ public class ListingsPage extends FragmentActivity {
         if (locationInput.equalsIgnoreCase("current")) {
             Location location =
                     locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            Log.v("subbu1", "Current selected");
+
         } else
         {
             //TODO
             //location to be obtained from some other service???
+            loadListingsFragment();
         }
 
         LocationListener locationListener = new LocationListener() {
@@ -277,6 +297,21 @@ public class ListingsPage extends FragmentActivity {
             fragmentTransaction.add(R.id.container,listingsFragment);
         }
         fragmentTransaction.commit();
+    }
+
+    public void updateSearchInfo (SearchInfo searchResults) {
+        this.mObjects = searchResults;
+    }
+
+    private boolean saveSearchToDataBase(String searchName) {
+        Log.d("saveSearchToDataBase", "SearchName is " + searchName);
+        if (mObjects == null) {
+            Log.d("saveSearchToDataBase", "Search Results Not Saved");
+                return false;
+        }
+        db.saveSearch(searchName, "n", mObjects);
+
+        return true;
     }
 
 

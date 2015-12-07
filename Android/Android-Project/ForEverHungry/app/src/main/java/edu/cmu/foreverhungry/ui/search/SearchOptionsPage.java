@@ -5,7 +5,6 @@ package edu.cmu.foreverhungry.ui.search;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.location.LocationProvider;
 import android.provider.Settings;
 
 import android.os.Bundle;
