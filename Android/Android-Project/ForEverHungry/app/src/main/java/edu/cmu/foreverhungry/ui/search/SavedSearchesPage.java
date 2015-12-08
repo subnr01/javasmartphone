@@ -29,6 +29,7 @@ public class SavedSearchesPage extends Activity implements View.OnClickListener 
     private static final String noSavedString = "NO SAVED SEARCHES FOUND";
     private Button ViewButton;
     private Button DeleteButton;
+    private String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("Saved Search Page", "ON CREATE");
@@ -41,17 +42,21 @@ public class SavedSearchesPage extends Activity implements View.OnClickListener 
 
         searchSelected = (Spinner) findViewById(R.id.spinnerSavedSearches);
         db = new databaseConnector(this);
+        username = getIntent().getStringExtra("username");
+        if (username == null) {
+            Log.d("SAVED SEARCH PAGE ERR", "USERNAME IS NULL");
+        }
         createSavedSearchesDropDown();
 
     }
 
     private void createSavedSearchesDropDown() {
 
-        List<String> savedResults = db.getSavedSearchesOfUser("n");
+        List<String> savedResults = db.getSavedSearchesOfUser(username);
         ArrayAdapter<String> adapter = null;
         if (savedResults == null || (savedResults.size() == 0)) {
             //return;
-            Log.d("Saved Search Page", "NO SAVED SEARCH");
+            Log.d("Saved Search Page", "NO SAVED SEARCH for user " + username);
 
             List<String> emptyResult = new ArrayList<>();
             emptyResult.add(noSavedString);
@@ -85,7 +90,7 @@ public class SavedSearchesPage extends Activity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.ViewButton:
                 Log.d("Saved Search Page", "VIEW BUTTON CLICKED");
-                SearchInfo savedInfo = db.getListingsOfSavedSearch("n", searchResultSelected);
+                SearchInfo savedInfo = db.getListingsOfSavedSearch(username, searchResultSelected);
                 startListingActivity(savedInfo.getLocation(), savedInfo.getCuisine(), savedInfo.getDistance(),
                             savedInfo.getLatitude(), savedInfo.getLongitude());
 
@@ -94,7 +99,7 @@ public class SavedSearchesPage extends Activity implements View.OnClickListener 
             case R.id.DeleteButton:
                 Log.d("Saved Search Page", "DELETE BUTTON CLICKED");
 
-                db.deleteSearch(searchResultSelected, "n");
+                db.deleteSearch(searchResultSelected, username);
                 Toast.makeText(getApplicationContext(), "Deleted the search result " + searchResultSelected,
                         Toast.LENGTH_SHORT).show();
                 createSavedSearchesDropDown();
@@ -109,6 +114,8 @@ public class SavedSearchesPage extends Activity implements View.OnClickListener 
         intent.putExtra("location", location);
         intent.putExtra("cuisine", cuisine);
         intent.putExtra("distance", String.valueOf(distance));
+        intent.putExtra("username", username);
+
         Log.v("SAVED SEARCHES", "LOAD LISTINGS PAGE FROM PREVIOUS SEARCH");
         startActivity(intent);
 

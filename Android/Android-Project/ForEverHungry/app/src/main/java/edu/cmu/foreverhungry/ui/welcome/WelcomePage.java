@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.PowerManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -23,20 +24,29 @@ import edu.cmu.foreverhungry.ui.search.*;
 public class WelcomePage extends Activity {
 
     private RelativeLayout WallPaper;
+    private String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        username = getIntent().getStringExtra("username");
+        if (username == null) {
+            Log.d("WELCOME PAGE ERROR:", "USERNAME IS NULL");
+        }
+
         setContentView(R.layout.activity_welcome_page);
         WallPaper = (RelativeLayout) findViewById(R.id.welcome_page);
         randomImage();
     }
 
     public void goToSearchPage(View sender) {
+        Log.d("WELCOME PAGE", "GOING TO SEARCHOPTIONS PAGE");
         Intent intent = new Intent(WelcomePage.this, SearchOptionsPage.class);
+        intent.putExtra("username", username);
         startActivity(intent);
     }
     public void goToSavedSearches(View sender) {
         Intent intent = new Intent(WelcomePage.this, SavedSearchesPage.class);
+        intent.putExtra("username", username);
         startActivity(intent);
     }
 

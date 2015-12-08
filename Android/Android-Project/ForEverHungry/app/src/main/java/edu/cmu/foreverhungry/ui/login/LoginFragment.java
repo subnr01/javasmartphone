@@ -4,6 +4,7 @@ package edu.cmu.foreverhungry.ui.login;
  * Created by subs on 11/25/15.
  */
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+import android.util.Log;
 
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 import edu.cmu.foreverhungry.R;
 
@@ -30,7 +38,9 @@ public class LoginFragment extends LoginFragmentBase {
     private Button RegisterButton;
     private LoginFragmentListener loginFragmentListener;
     private LoginSuccessListener loginSuccessListener;
-    private static boolean RUNWITHOUTAUTH = true;
+    private static boolean RUNWITHOUTAUTH = false;
+    protected String username;
+    protected String password;
 
 
     @Override
@@ -88,17 +98,20 @@ public class LoginFragment extends LoginFragmentBase {
         String password = passwordField.getText().toString();
 
         if ( RUNWITHOUTAUTH) {
-            loginSuccess();
+            loginSuccess(username);
             return;
         }
         if (username.length() == 0) {
             showToast(R.string.no_username_toast);
-
+            return;
         } else if (password.length() == 0) {
             showToast(R.string.no_password_toast);
-        } else {
-            loginSuccess();
+            return;
         }
+
+        this.username = username;
+        this.password = password;
+        (new Authenticate()).execute();
     }
 
 
@@ -135,9 +148,46 @@ public class LoginFragment extends LoginFragmentBase {
     }
 
 
-    private void loginSuccess()
+    private void loginSuccess(String username)
     {
-        loginSuccessListener.onLoginSuccess();
+        loginSuccessListener.onLoginSuccess(username);
     }
 
+    private class Authenticate extends AsyncTask {
+        private boolean success = false;
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            String result = null;
+            try {
+                Socket socket = new Socket(getResources().getString(R.string.ServerIP),
+                                Integer.parseInt(getResources().getString(R.string.ServerPort)));
+                ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+                ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+                out.writeObject("passwordcheck");
+                out.writeObject(username);
+                out.writeObject(password);
+                result = (String)in.readObject();
+            } catch (Exception e) {
+                Log.d("ERROR", "Login failed" + e.getMessage());
+                return false;
+            }
+
+            if(result.equals("SUCCESS")) {
+                success = true;
+                return username;
+            }
+
+            return null;
+        }
+
+        protected void onPostExecute(final Object loginResults) {
+            if(success) {
+                loginSuccess(username);
+                return;
+            }
+
+            showToast("Invalid username/password. Try again!");
+        }
+    }
 }

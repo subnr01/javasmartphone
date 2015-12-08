@@ -51,6 +51,7 @@ public class SearchOptionsPage extends Activity
     private double latitude;
     private double longitude;
     private double distance;
+    private String username;
 
     private LocationManager locationManager;
 
@@ -62,6 +63,7 @@ public class SearchOptionsPage extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_options_page);
+        username = getIntent().getStringExtra("username");
 
         WallPaper = (RelativeLayout) findViewById(R.id.search_options_layout);
 
@@ -156,9 +158,12 @@ public class SearchOptionsPage extends Activity
         Intent intent = new Intent(this, ListingsPage.class);
         distance = getDistance(distanceQuery);
         String dist = String.valueOf(distance);
+
         intent.putExtra("location", locationInput);
         intent.putExtra("cuisine", cuisineInput);
         intent.putExtra("distance", dist);
+        intent.putExtra("username", username);
+
         Log.v(TAG, "All set to display resuarant information");
         startActivity(intent);
 

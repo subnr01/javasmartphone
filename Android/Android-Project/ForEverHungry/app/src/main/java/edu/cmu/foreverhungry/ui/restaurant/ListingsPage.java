@@ -50,6 +50,7 @@ public class ListingsPage extends FragmentActivity {
     private static final String TAG = "ListingsPage";
 
 
+    private String username;
 
     private String cuisineInput ;
     private String locationInput ;
@@ -76,7 +77,12 @@ public class ListingsPage extends FragmentActivity {
         String dist = getIntent().getStringExtra("distance");
         cuisineInput = getIntent().getStringExtra("cuisine");
         locationInput = getIntent().getStringExtra("location");
-
+        username = getIntent().getStringExtra("username");
+        if (username == null) {
+            Log.d("LISTINGS PAGE ERROR:", "USERNAME IS NULL");
+        } else {
+            Log.d("UserName is ", username);
+        }
         /* converting back to double */
         Distance = Double.parseDouble(dist);
         mObjects = null;
@@ -309,7 +315,7 @@ public class ListingsPage extends FragmentActivity {
             Log.d("saveSearchToDataBase", "Search Results Not Saved");
                 return false;
         }
-        db.saveSearch(searchName, "n", mObjects);
+        db.saveSearch(searchName, username, mObjects);
 
         return true;
     }

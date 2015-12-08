@@ -12,15 +12,6 @@
         android:hint="@string/username_input_hint"></EditText>
 
     <EditText
-        android:id="@+id/signup_email_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/ParseLoginUI.EditText"
-        android:layout_marginTop="@dimen/small_vertical_spacing"
-        android:hint="@string/email_input_hint"
-        android:inputType="textEmailAddress" />
-
-    <EditText
         android:id="@+id/signup_password_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

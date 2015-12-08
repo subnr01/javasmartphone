@@ -5,5 +5,5 @@ package edu.cmu.foreverhungry.ui.login;
  */
 
 public interface LoginSuccessListener {
-    public void onLoginSuccess();
+    public void onLoginSuccess(String user);
 }
