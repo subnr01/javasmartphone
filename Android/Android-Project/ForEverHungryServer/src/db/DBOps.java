@@ -12,7 +12,7 @@ public class DBOps {
 	private static final String DB_NAME = "ForEverHungryServer";
 	private static final String DB_USER = "root";
 	private static final String DB_PASSWORD = "";
-	private static final String TABLE_NAME = "users";
+	private static final String TABLE_NAME = "user";
 	private Connection conn = null;
 	
 	public boolean connectPrimitive() {
@@ -51,7 +51,7 @@ public class DBOps {
 	}
 	
 	public boolean createTable() {
-		String queryStr = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (username VARCHAR(20) PRIMARY KEY, password VARCHAR(255));";
+		String queryStr = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (email VARCHAR(255) PRIMARY KEY, username VARCHAR(255), password VARCHAR(255));";
 		Statement st;
 		try {
 			st = conn.createStatement();
@@ -63,8 +63,8 @@ public class DBOps {
 		return true;
 	}
 	
-	public boolean createUser(String username, String password) {
-		String queryStr = "INSERT INTO " + TABLE_NAME + " VALUES('" + username + "', '" + password + "');";
+	public boolean createUser(String email, String username, String password) {
+		String queryStr = "INSERT INTO " + TABLE_NAME + " VALUES('" + email + "','" + username + "', '" + password + "');";
 		try {
 			Statement st = conn.createStatement();
 			st.execute(queryStr);
@@ -105,8 +105,9 @@ public class DBOps {
 		}
 	}
 
-	public boolean getpassword(String username, StringBuilder oldpassword) {
-		String queryStr = "SELECT * FROM " + TABLE_NAME + " WHERE username='" + username + "';";
+	public boolean getpassword(String email, StringBuilder oldpassword) {
+		System.out.println(email);
+		String queryStr = "SELECT * FROM " + TABLE_NAME + " WHERE email='" + email + "';";
 		try {
 			Statement st = conn.createStatement();
 			if(!st.execute(queryStr)) {
@@ -118,6 +119,7 @@ public class DBOps {
 			}
 			
 			oldpassword.append(result.getString("password"));
+			System.out.println(oldpassword);
 		} catch (Exception e) {
 			System.out.println("ERROR:" + e.getMessage());
 			return false;

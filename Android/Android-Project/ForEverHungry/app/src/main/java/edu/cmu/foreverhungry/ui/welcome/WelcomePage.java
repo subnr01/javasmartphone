@@ -10,8 +10,10 @@ import android.os.PowerManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.view.Menu;
 import com.squareup.picasso.Picasso;
@@ -19,11 +21,14 @@ import com.squareup.picasso.Picasso;
 import java.util.Random;
 
 import edu.cmu.foreverhungry.R;
+import edu.cmu.foreverhungry.model.UserInfo;
+import edu.cmu.foreverhungry.ui.login.ChangePassword;
+import edu.cmu.foreverhungry.ui.login.LoginScreenActivity;
 import edu.cmu.foreverhungry.ui.search.*;
 
 public class WelcomePage extends Activity {
 
-    private RelativeLayout WallPaper;
+    private LinearLayout WallPaper;
     private String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +39,7 @@ public class WelcomePage extends Activity {
         }
 
         setContentView(R.layout.activity_welcome_page);
-        WallPaper = (RelativeLayout) findViewById(R.id.welcome_page);
+        WallPaper = (LinearLayout) findViewById(R.id.welcome_page);
         randomImage();
     }
 
@@ -56,6 +61,27 @@ public class WelcomePage extends Activity {
         return true;
     }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_logout) {
+            UserInfo.clearUserInfo();
+            // signs user out, sends them to the login page
+            Intent intent = new Intent(this, LoginScreenActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+            return true;
+        } else if ( id == R.id.change_password) {
+            Intent intent= new Intent(this, ChangePassword.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
 
     private void randomImage() {
@@ -64,37 +90,35 @@ public class WelcomePage extends Activity {
         int toLoad = 0;
         switch (random) {
             case 0:
-                toLoad = R.drawable.chinese;
+                toLoad = R.drawable.img1;
                 break;
             case 1:
-                toLoad = R.drawable.thai;
+                toLoad = R.drawable.img2;
                 break;
             case 2:
-                toLoad = R.drawable.italian;
+                toLoad = R.drawable.img3;
                 break;
             case 3:
-                toLoad = R.drawable.mexican;
+                toLoad = R.drawable.img4;
                 break;
             case 4:
-                toLoad = R.drawable.mediterranean;
+                toLoad = R.drawable.img5;
                 break;
             case 5:
-                toLoad = R.drawable.indian;
+                toLoad = R.drawable.img6;
                 break;
             case 6:
-                toLoad = R.drawable.japanese;
+                toLoad = R.drawable.img7;
                 break;
             case 7:
-                toLoad = R.drawable.korean;
+                toLoad = R.drawable.img8;
                 break;
             case 8:
-                toLoad = R.drawable.burger;
+                toLoad = R.drawable.img9;
                 break;
             case 9:
-                toLoad = R.drawable.arabian;
+                toLoad = R.drawable.img10;
                 break;
-
-
 
         }
         WallPaper.setBackgroundResource(toLoad);

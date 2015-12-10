@@ -53,16 +53,23 @@ public class SocketWorker extends Thread implements SocketServerInterface {
 		
 		try {
 			String action = (String)in.readObject();
-			String username = (String)in.readObject();
+			
 			
 			if(action.equals("newuser")) {
+				String username = (String)in.readObject();
 				String password = (String)in.readObject();
-				if(dbOps.createUser(username, password)) {
+				String email = (String)in.readObject();
+				System.out.println(email);
+				System.out.println(username);
+				System.out.println(password);
+				
+				if(dbOps.createUser(email,username, password)) {
 					out.writeObject("SUCCESS");
 					return;
 				}
 				out.writeObject("FAILED");
 			} else if(action.equals("passwordcheck")) {
+				String username = (String)in.readObject();
 				String password = (String)in.readObject();
 				if(dbOps.authenticate(username, password)) {
 					out.writeObject("SUCCESS");
@@ -70,8 +77,9 @@ public class SocketWorker extends Thread implements SocketServerInterface {
 				}
 				out.writeObject("FAILED");
 			} else if(action.equals("lostpassword")) {
+				String email = (String)in.readObject();
 				StringBuilder oldpassword = new StringBuilder();
-				if(dbOps.getpassword(username, oldpassword)) {
+				if(dbOps.getpassword(email, oldpassword)) {
 					out.writeObject("SUCCESS");
 					out.writeObject(oldpassword.toString());
 					return;

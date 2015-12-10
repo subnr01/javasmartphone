@@ -33,6 +33,15 @@
         android:inputType="textPassword"
         android:selectAllOnFocus="true" />
 
+    <EditText
+        android:id="@+id/signup_email_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/ParseLoginUI.EditText"
+        android:layout_marginTop="@dimen/small_vertical_spacing"
+        android:hint="@string/email_input_hint"
+        android:inputType="textEmailAddress" />
+
   <Button
         android:id="@+id/create_account"
         style="@style/ParseLoginUI.Button"

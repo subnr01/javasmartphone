@@ -101,6 +101,8 @@ public class LoginFragment extends LoginFragmentBase {
             loginSuccess(username);
             return;
         }
+
+
         if (username.length() == 0) {
             showToast(R.string.no_username_toast);
             return;
@@ -111,6 +113,9 @@ public class LoginFragment extends LoginFragmentBase {
 
         this.username = username;
         this.password = password;
+        if (username.equals("admin")) {
+            return;
+        }
         (new Authenticate()).execute();
     }
 
@@ -160,8 +165,12 @@ public class LoginFragment extends LoginFragmentBase {
         protected Object doInBackground(Object[] params) {
             String result = null;
             try {
-                Socket socket = new Socket(getResources().getString(R.string.ServerIP),
-                                Integer.parseInt(getResources().getString(R.string.ServerPort)));
+                String ServerIP = getResources().getString(R.string.ServerIP);
+                Integer port = Integer.valueOf(getResources().getString(R.string.ServerPort));
+                Log.v("subbu3", ServerIP);
+                Log.v("subbu3", port.toString());
+                Socket socket = new Socket(ServerIP, port);
+
                 ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
                 ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
                 out.writeObject("passwordcheck");

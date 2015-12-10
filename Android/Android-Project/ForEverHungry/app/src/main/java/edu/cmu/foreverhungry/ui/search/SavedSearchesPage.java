@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,7 +21,10 @@ import java.util.Map;
 import edu.cmu.foreverhungry.R;
 import edu.cmu.foreverhungry.model.RestaurantInfo;
 import edu.cmu.foreverhungry.model.SearchInfo;
+import edu.cmu.foreverhungry.model.UserInfo;
 import edu.cmu.foreverhungry.services.database.databaseConnector;
+import edu.cmu.foreverhungry.ui.login.ChangePassword;
+import edu.cmu.foreverhungry.ui.login.LoginScreenActivity;
 import edu.cmu.foreverhungry.ui.restaurant.ListingsPage;
 
 
@@ -42,7 +47,7 @@ public class SavedSearchesPage extends Activity implements View.OnClickListener 
 
         searchSelected = (Spinner) findViewById(R.id.spinnerSavedSearches);
         db = new databaseConnector(this);
-        username = getIntent().getStringExtra("username");
+        username = UserInfo.getInstance().getUsername();
         if (username == null) {
             Log.d("SAVED SEARCH PAGE ERR", "USERNAME IS NULL");
         }
@@ -119,5 +124,31 @@ public class SavedSearchesPage extends Activity implements View.OnClickListener 
         Log.v("SAVED SEARCHES", "LOAD LISTINGS PAGE FROM PREVIOUS SEARCH");
         startActivity(intent);
 
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.base, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_logout) {
+            UserInfo.clearUserInfo();
+            // signs user out, sends them to the login page
+            Intent intent = new Intent(this, LoginScreenActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+            return true;
+        } else if ( id == R.id.change_password) {
+            Intent intent= new Intent(this, ChangePassword.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

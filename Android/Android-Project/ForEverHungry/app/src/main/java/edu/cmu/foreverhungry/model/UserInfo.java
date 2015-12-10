@@ -8,8 +8,27 @@ public class UserInfo {
     String password;
     boolean loggedIn = false;
 
-    public UserInfo(String email, String password) {
+    private static UserInfo instance = null;
+
+
+    private UserInfo() {}
+
+    public static UserInfo getInstance() {
+        if(instance == null) {
+            instance = new UserInfo();
+        }
+        return instance;
+    }
+
+    public static void clearUserInfo() {
+        instance = null;
+    }
+
+    public void setEmail( String email){
         this.email = email;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -25,9 +44,10 @@ public class UserInfo {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getEmail() {
+        return email;
     }
+
 
     public boolean authenticate() {
         loggedIn = true;

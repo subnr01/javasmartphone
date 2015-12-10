@@ -3,6 +3,8 @@
     package="edu.cmu.foreverhungry" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -25,8 +27,7 @@
         android:supportsRtl="true" >
         <activity
             android:name=".ui.login.LoginScreenActivity"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,40 +35,51 @@
             </intent-filter>
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.search.SearchPage" >
+            android:name=".ui.search.SearchPage"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.search.SavedSearchesPage" >
+            android:name=".ui.search.SavedSearchesPage"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.welcome.WelcomePage" >
+            android:name=".ui.welcome.WelcomePage"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.maps.MapsActivity" >
+            android:name=".ui.restaurant.Listings"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.restaurant.Listings" >
+            android:name=".ui.restaurant.DetailedView"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.restaurant.DetailedView" >
+            android:name=".ui.maps.MapPage"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.maps.MapPage" >
+            android:name=".ui.restaurant.ListingsPage"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.restaurant.ListingsPage" >
+            android:name=".ui.search.SearchOptionsPage"
+            android:screenOrientation="portrait" >
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
         <activity
-            android:screenOrientation="portrait"
-            android:name=".ui.search.SearchOptionsPage">
+            android:name=".ui.maps.MapsActivity"
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.maps.MapPage" />
+        </activity>
+        <activity android:name=".ui.login.ChangePassword" >
         </activity>
     </application>
 

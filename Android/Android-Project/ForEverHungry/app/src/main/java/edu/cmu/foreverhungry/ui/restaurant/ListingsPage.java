@@ -7,6 +7,7 @@ package edu.cmu.foreverhungry.ui.restaurant;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.location.LocationListener;
 import android.support.v4.app.Fragment;
 
@@ -18,6 +19,7 @@ import android.os.Bundle;
 import edu.cmu.foreverhungry.R;
 import edu.cmu.foreverhungry.model.RestaurantInfo;
 import edu.cmu.foreverhungry.model.SearchInfo;
+import edu.cmu.foreverhungry.model.UserInfo;
 import edu.cmu.foreverhungry.services.database.databaseConnector;
 
 import android.text.InputType;
@@ -27,6 +29,7 @@ import android.location.Location;
 import android.location.LocationProvider;
 import android.location.LocationManager;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -34,6 +37,11 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.software.shell.fab.ActionButton;
 
+import edu.cmu.foreverhungry.ui.login.ChangePassword;
+import edu.cmu.foreverhungry.ui.login.LoginScreenActivity;
+import edu.cmu.foreverhungry.ui.maps.*;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -62,6 +70,7 @@ public class ListingsPage extends FragmentActivity {
     private LocationManager locationManager;
     private boolean onLocationFound = false;
     private SearchInfo mObjects;
+    private ArrayList<RestaurantInfo> searchResults;
 
     final static private int minTime = 0; // in ms
     final static private int minDistance = 0;// in meters
@@ -78,6 +87,7 @@ public class ListingsPage extends FragmentActivity {
         cuisineInput = getIntent().getStringExtra("cuisine");
         locationInput = getIntent().getStringExtra("location");
         username = getIntent().getStringExtra("username");
+        //username = UserInfo.getInstance().getUsername();
         if (username == null) {
             Log.d("LISTINGS PAGE ERROR:", "USERNAME IS NULL");
         } else {
@@ -85,7 +95,7 @@ public class ListingsPage extends FragmentActivity {
         }
         /* converting back to double */
         Distance = Double.parseDouble(dist);
-        mObjects = null;
+        mObjects = new SearchInfo();
 
 
         /* Setup the elevated button */
@@ -96,7 +106,21 @@ public class ListingsPage extends FragmentActivity {
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                  saveSearch(ListingsPage.this);
+                saveSearch(ListingsPage.this);
+            }
+        });
+
+
+
+        ActionButton mapViewButton = (ActionButton) findViewById(R.id.map_view_button);
+        mapViewButton.setButtonColor(getResources().getColor(R.color.fab_material_purple_500));
+        mapViewButton.setButtonColorPressed(getResources().getColor(R.color.fab_material_purple_900));
+        mapViewButton.setImageSize(75);
+        mapViewButton.setImageResource(R.drawable.google_map);
+        mapViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startMapActivity();
             }
         });
 
@@ -152,8 +176,7 @@ public class ListingsPage extends FragmentActivity {
                     saveSearch = saveSearchToDataBase(value);
                     if (saveSearch) {
                         Toast.makeText(getApplicationContext(), "Thank you!", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                    } else {
                         Toast.makeText(getApplicationContext(), "Could not save the result!", Toast.LENGTH_SHORT).show();
                     }
                 } else { // Send error toast if description is too short
@@ -163,10 +186,8 @@ public class ListingsPage extends FragmentActivity {
                 }
 
 
-
             }
         });
-
 
 
         // Cancel button action
@@ -180,10 +201,20 @@ public class ListingsPage extends FragmentActivity {
         alert.show();
 
 
-
-
     }
 
+
+    public void startMapActivity()
+    {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("listings", searchResults);
+        bundle.putSerializable("searchInfo", mObjects);
+        Intent intent = new Intent(this, MapPage.class);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
+
+    }
 
     public void initLocationManager()
     {
@@ -264,6 +295,28 @@ public class ListingsPage extends FragmentActivity {
         return true;
     }
 
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_logout) {
+            UserInfo.clearUserInfo();
+            // signs user out, sends them to the login page
+            Intent intent = new Intent(this, LoginScreenActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+            return true;
+        } else if ( id == R.id.change_password) {
+            Intent intent= new Intent(this, ChangePassword.class);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     /*
     * Load the listings fragment
     */
@@ -309,6 +362,11 @@ public class ListingsPage extends FragmentActivity {
         this.mObjects = searchResults;
     }
 
+    public void returnSearchResults(ArrayList<RestaurantInfo> results)
+    {
+        searchResults = results;
+    }
+
     private boolean saveSearchToDataBase(String searchName) {
         Log.d("saveSearchToDataBase", "SearchName is " + searchName);
         if (mObjects == null) {
@@ -319,6 +377,8 @@ public class ListingsPage extends FragmentActivity {
 
         return true;
     }
+
+
 
 
 }

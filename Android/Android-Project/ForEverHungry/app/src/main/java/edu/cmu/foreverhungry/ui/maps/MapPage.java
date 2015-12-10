@@ -27,6 +27,15 @@ public class MapPage extends Activity implements View.OnClickListener{
         searchResults = (ArrayList<RestaurantInfo>) getIntent().getExtras().getSerializable("listings");
         searchInfo = (SearchInfo) getIntent().getExtras().getSerializable("searchInfo");
 
+
+        if ( searchInfo == null) {
+            Log.v("subbu1","serachinfo is null");
+        }
+
+        if (searchResults == null)
+        {
+            Log.v("subbu1","searchResults is null");
+        }
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.restaurantMap);
         mymap = new MapsActivity(searchResults, getApplicationContext());

@@ -13,6 +13,9 @@ public class SearchInfo extends RestaurantInfo implements Serializable{
     private double distance;
     private LocationInfo locInfo;
 
+
+    public SearchInfo() {};
+
     public SearchInfo(String location, String cuisine, double distance, double lat, double lon) {
         this.location = location;
         this.cuisine = cuisine;

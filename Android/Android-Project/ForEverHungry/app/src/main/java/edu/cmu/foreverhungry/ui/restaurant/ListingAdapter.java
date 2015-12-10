@@ -28,6 +28,7 @@ import com.gc.materialdesign.views.ButtonFlat;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,13 +43,14 @@ import edu.cmu.foreverhungry.model.RestaurantInfo;
 public class ListingAdapter extends RecyclerView.Adapter<ListingAdapter.ViewHolder> {
 
     public static final String TAG = "ListingAdapter";
-    List<RestaurantInfo> mObjects = Collections.emptyList();
+    ArrayList<RestaurantInfo> mObjects = new ArrayList<RestaurantInfo>();
+
     Context mContext;
 
 
     //constructor
     public ListingAdapter(Context context,
-                          List<RestaurantInfo> objects) {
+                          ArrayList<RestaurantInfo> objects) {
 
         mObjects = objects;
         mContext = context;

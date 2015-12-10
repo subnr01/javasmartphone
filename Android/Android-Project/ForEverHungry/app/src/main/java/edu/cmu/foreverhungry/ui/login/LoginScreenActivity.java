@@ -34,7 +34,7 @@ public class LoginScreenActivity extends FragmentActivity implements
         setContentView(R.layout.activity_login_screen);
         loginWallPaper = (ImageView) findViewById(R.id.loginImage);
 
-        randomImage();
+        //randomImage();
 
         if (savedInstanceState == null) {
             loadLoginFragment();
@@ -62,7 +62,7 @@ public class LoginScreenActivity extends FragmentActivity implements
 
     public void onLoginSuccess(String username) {
         Intent intent = new Intent(this, WelcomePage.class);
-        intent.putExtra("username", username);
+        //intent.putExtra("username", username);
         startActivity(intent);
     }
 
@@ -111,34 +111,34 @@ public class LoginScreenActivity extends FragmentActivity implements
 
         switch (random) {
             case 0:
-                toLoad = R.drawable.chinese;
+                toLoad = R.drawable.img1;
                 break;
             case 1:
-                toLoad = R.drawable.thai;
+                toLoad = R.drawable.img2;
                 break;
             case 2:
-                toLoad = R.drawable.italian;
+                toLoad = R.drawable.img3;
                 break;
             case 3:
-                toLoad = R.drawable.mexican;
+                toLoad = R.drawable.img4;
                 break;
             case 4:
-                toLoad = R.drawable.mediterranean;
+                toLoad = R.drawable.img5;
                 break;
             case 5:
-                toLoad = R.drawable.indian;
+                toLoad = R.drawable.img6;
                 break;
             case 6:
-                toLoad = R.drawable.japanese;
+                toLoad = R.drawable.img7;
                 break;
             case 7:
-                toLoad = R.drawable.korean;
+                toLoad = R.drawable.img8;
                 break;
             case 8:
-                toLoad = R.drawable.burger;
+                toLoad = R.drawable.img9;
                 break;
             case 9:
-                toLoad = R.drawable.arabian;
+                toLoad = R.drawable.img10;
                 break;
 
         }

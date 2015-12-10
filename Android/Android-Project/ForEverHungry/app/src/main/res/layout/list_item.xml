@@ -143,7 +143,8 @@
                 android:textColor="@color/accent"
 
                 android:layout_weight="1"
-                android:background="@color/accent"/>
+                android:background="@color/accent"
+                android:layout_marginLeft="30dp" />
 
             <com.gc.materialdesign.views.ButtonFlat
                 android:id="@+id/directionsButton"
@@ -153,7 +154,7 @@
                 android:textColor="@color/accent"
 
                 android:layout_weight="1"
-                android:background="@color/accent"/>
+                android:background="@color/accent" />
 
         </LinearLayout>
 

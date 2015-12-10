@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -54,7 +55,7 @@ public class ListingsFragment extends Fragment {
     ProgressBar mProgressBar;
 
     //results
-    List<RestaurantInfo> searchResults;
+    ArrayList<RestaurantInfo> searchResults;
 
     //if no results then display
     TextView mEmptyText;
@@ -90,7 +91,7 @@ public class ListingsFragment extends Fragment {
         Log.v(TAG,cuisineInput);
 
 
-        searchResults = Collections.emptyList();
+        searchResults = new ArrayList<>();
         mProgressBar = (ProgressBar) v.findViewById(R.id.progress);
         mEmptyText = (TextView) v.findViewById(R.id.emptyText);
         mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefresher);
@@ -222,9 +223,13 @@ public class ListingsFragment extends Fragment {
             Activity listing = getActivity();
             if (listing != null) {
                 ((ListingsPage)listing).updateSearchInfo(saveInfo);
+                ((ListingsPage)listing).returnSearchResults(searchResults);
+
             } else {
                 Log.d("LISTING FRAGMENT", "NULL ACTIVITY OBJECT");
             }
+
+
             return searchResults;
        }
 

@@ -16,12 +16,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import android.content.Intent;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import android.widget.Toast;
 
 import edu.cmu.foreverhungry.R;
+import edu.cmu.foreverhungry.model.UserInfo;
+import edu.cmu.foreverhungry.services.remote.*;
 
 
 
@@ -30,14 +34,14 @@ public class ForgotPasswordFragment extends LoginFragmentBase implements OnClick
 
 
     private TextView instructionsTextView;
-    private EditText usernameField;
+    private EditText emailField;
     private Button submitButton;
     private boolean emailSent = false;
     private ForgotPasswordSuccessListener forgotPasswordSuccessListener;
 
 
     private static final String TAG = "ForgotPasswordFragment";
-    private String username = null;
+    private String email = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
@@ -47,7 +51,7 @@ public class ForgotPasswordFragment extends LoginFragmentBase implements OnClick
                 parent, false);
         instructionsTextView = (TextView) v
                 .findViewById(R.id.login_help_instructions);
-        usernameField = (EditText) v.findViewById(R.id.login_help_username_input);
+        emailField = (EditText) v.findViewById(R.id.login_help_username_input);
         submitButton = (Button) v.findViewById(R.id.login_help_submit);
         submitButton.setOnClickListener(this);
         return v;
@@ -68,9 +72,9 @@ public class ForgotPasswordFragment extends LoginFragmentBase implements OnClick
 
     @Override
     public void onClick(View v) {
-        username = usernameField.getText().toString();
+        email = emailField.getText().toString();
         new PasswordRetrieval().execute();
-        //forgotPasswordSuccessListener.onClickSuccess();
+
     }
 
     private class PasswordRetrieval extends AsyncTask {
@@ -79,21 +83,26 @@ public class ForgotPasswordFragment extends LoginFragmentBase implements OnClick
 
         @Override
         protected Object doInBackground(Object[] params) {
-            String result = null;
+            String result;
             ObjectInputStream in = null;
             ObjectOutputStream out = null;
 
             try {
-                Socket socket = new Socket("10.0.0.4", 6666);
+                String ServerIP = getResources().getString(R.string.ServerIP);
+                Integer port = Integer.valueOf(getResources().getString(R.string.ServerPort));
+                Log.v("subbu3", ServerIP);
+                Log.v("subbu3", port.toString());
+                Socket socket = new Socket(ServerIP, port);
                 in = new ObjectInputStream(socket.getInputStream());
                 out = new ObjectOutputStream(socket.getOutputStream());
                 out.writeObject("lostpassword");
-                out.writeObject(username);
+                out.writeObject(email);
                 result = (String)in.readObject();
-
+                Log.v("subbu3","result is "+result);
                 if(result.equals("SUCCESS")) {
                     success = true;
                     password = (String)in.readObject();
+                    Log.v("subbu3",password);
                     return null;
                 }
             } catch (Exception e) {
@@ -105,12 +114,34 @@ public class ForgotPasswordFragment extends LoginFragmentBase implements OnClick
         }
 
         protected void onPostExecute(final Object loginResults) {
-            if(success == true) {
-                showToast("Your password is: " + password);
+            Log.v("subbu3","success is "+success);
+            if(success == false) {
+                showToast("Email not found. Try again!");
                 return;
             }
 
-            showToast("Username not found. Try again!");
+            Mail m = new Mail("foreverhungry2015@gmail.com", "root1234");
+            String [] toArr = {email};
+            m.setTo(toArr);
+            m.setFrom("foreverhungry2015@gmail.com");
+            m.setSubject("Password info");
+            m.setBody(password);
+
+            try {
+
+                if(m.send()) {
+                    showToast("Email was sent successfully.");
+                } else {
+
+                    showToast("Some issue with the email provided." +
+                                        "Email was not sent successfully.");
+
+                }
+            } catch(Exception e) {
+                Log.v("MailApp", "Could not send email", e);
+            }
+
+            forgotPasswordSuccessListener.onClickSuccess();
         }
     }
 }

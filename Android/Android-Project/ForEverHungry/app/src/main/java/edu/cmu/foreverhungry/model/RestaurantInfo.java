@@ -38,16 +38,23 @@ public class RestaurantInfo implements Serializable{
         location = new LocationInfo();
     }
 
-    public RestaurantInfo(String name, String phone, String address, String url) {
+    public RestaurantInfo(String name, String phone, String addr, String url) {
         this.name = name;
         this.phone = phone;
-        this.address = address;
+        setUpAddress(addr);
         reviews = new ArrayList<Review>();
         setImage(url);
     }
 
     public String getRestaurantName() {
         return name;
+    }
+
+    public void setUpAddress ( String addr) {
+        this.address = addr.substring(2,addr.length() - 2);
+        Log.v("subbu1","oringinal address: "+addr);
+        Log.v("subbu1","address: "+address);
+
     }
 
     public void setRestaurantName(String name) {
@@ -62,8 +69,8 @@ public class RestaurantInfo implements Serializable{
         return phone;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddress(String addr) {
+        setUpAddress(addr);
     }
 
     public String getAddress() {

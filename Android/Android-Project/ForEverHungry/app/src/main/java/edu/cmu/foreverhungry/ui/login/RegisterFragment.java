@@ -26,6 +26,7 @@ import java.util.List;
 import edu.cmu.foreverhungry.R;
 import edu.cmu.foreverhungry.model.RegistrationInfo;
 import edu.cmu.foreverhungry.model.RestaurantInfo;
+import edu.cmu.foreverhungry.model.UserInfo;
 
 
 public class RegisterFragment extends LoginFragmentBase implements OnClickListener {
@@ -35,6 +36,7 @@ public class RegisterFragment extends LoginFragmentBase implements OnClickListen
     private EditText emailField;
     protected String username;
     protected String password;
+    protected String email;
 
     private Button createAccountButton;
     private LoginSuccessListener loginSuccessListener;
@@ -60,6 +62,7 @@ public class RegisterFragment extends LoginFragmentBase implements OnClickListen
 
         usernameField = (EditText) v.findViewById(R.id.signup_username_input);
         passwordField = (EditText) v.findViewById(R.id.signup_password_input);
+        emailField = (EditText) v.findViewById(R.id.signup_email_input);
         confirmPasswordField = (EditText) v
                 .findViewById(R.id.signup_confirm_password_input);
         createAccountButton = (Button) v.findViewById(R.id.create_account);
@@ -94,7 +97,8 @@ public class RegisterFragment extends LoginFragmentBase implements OnClickListen
         loginSuccessListener.onLoginSuccess(username);
     }
 
-    private boolean validateRegister(String username, String password, String passwordAgain) {
+    private boolean validateRegister(String username, String password,
+                                            String passwordAgain, String email) {
         if (username.length() == 0) {
             showToast(R.string.no_username_toast);
             return false;
@@ -114,6 +118,9 @@ public class RegisterFragment extends LoginFragmentBase implements OnClickListen
             confirmPasswordField.selectAll();
             confirmPasswordField.requestFocus();
             return false;
+        }else if (email != null && email.length() == 0) {
+            showToast(R.string.no_email_toast);
+            return false;
         }
 
         return true;
@@ -124,14 +131,15 @@ public class RegisterFragment extends LoginFragmentBase implements OnClickListen
         String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
         String passwordAgain = confirmPasswordField.getText().toString();
+        String email = emailField.getText().toString();
 
-        if(!validateRegister(username, password, passwordAgain)) {
-            Toast.makeText(v.getContext(), "Username already exists. Choose a different username", Toast.LENGTH_LONG).show();
+        if(!validateRegister(username, password, passwordAgain, email)) {
             return;
         }
 
         this.username = username;
         this.password = password;
+        this.email = email;
         new Registration().execute();
     }
 
@@ -159,6 +167,7 @@ public class RegisterFragment extends LoginFragmentBase implements OnClickListen
                 out.writeObject("newuser");
                 out.writeObject(username);
                 out.writeObject(password);
+                out.writeObject(email);
                 result = (String)in.readObject();
             } catch (IOException e) {
                 Log.d("ERROR", e.getMessage());
@@ -171,6 +180,9 @@ public class RegisterFragment extends LoginFragmentBase implements OnClickListen
 
             if(result.equals("SUCCESS")) {
                 success = true;
+                UserInfo.getInstance().setUsername(username);
+                UserInfo.getInstance().setEmail(email);
+                UserInfo.getInstance().setPassword(password);
             } else {
                 complete = true;
             }
