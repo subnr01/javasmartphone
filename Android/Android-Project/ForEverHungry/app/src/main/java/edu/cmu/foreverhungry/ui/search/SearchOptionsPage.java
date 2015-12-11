@@ -69,7 +69,7 @@ public class SearchOptionsPage extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_options_page);
-        username = getIntent().getStringExtra("username");
+        username = UserInfo.getInstance().getUsername();
 
         WallPaper = (RelativeLayout) findViewById(R.id.search_options_layout);
 
@@ -188,7 +188,6 @@ public class SearchOptionsPage extends Activity
         intent.putExtra("location", locationInput);
         intent.putExtra("cuisine", cuisineInput);
         intent.putExtra("distance", dist);
-        intent.putExtra("username", username);
 
         Log.v(TAG, "All set to display resuarant information");
         startActivity(intent);

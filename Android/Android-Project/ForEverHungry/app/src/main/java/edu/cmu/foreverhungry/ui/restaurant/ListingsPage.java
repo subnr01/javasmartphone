@@ -86,8 +86,8 @@ public class ListingsPage extends FragmentActivity {
         String dist = getIntent().getStringExtra("distance");
         cuisineInput = getIntent().getStringExtra("cuisine");
         locationInput = getIntent().getStringExtra("location");
-        username = getIntent().getStringExtra("username");
-        //username = UserInfo.getInstance().getUsername();
+        //username = getIntent().getStringExtra("username");
+        username = UserInfo.getInstance().getUsername();
         if (username == null) {
             Log.d("LISTINGS PAGE ERROR:", "USERNAME IS NULL");
         } else {

@@ -62,7 +62,6 @@ public class LoginScreenActivity extends FragmentActivity implements
 
     public void onLoginSuccess(String username) {
         Intent intent = new Intent(this, WelcomePage.class);
-        //intent.putExtra("username", username);
         startActivity(intent);
     }
 

@@ -33,7 +33,7 @@ public class WelcomePage extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        username = getIntent().getStringExtra("username");
+        username = UserInfo.getInstance().getUsername();
         if (username == null) {
             Log.d("WELCOME PAGE ERROR:", "USERNAME IS NULL");
         }
@@ -46,12 +46,10 @@ public class WelcomePage extends Activity {
     public void goToSearchPage(View sender) {
         Log.d("WELCOME PAGE", "GOING TO SEARCHOPTIONS PAGE");
         Intent intent = new Intent(WelcomePage.this, SearchOptionsPage.class);
-        intent.putExtra("username", username);
         startActivity(intent);
     }
     public void goToSavedSearches(View sender) {
         Intent intent = new Intent(WelcomePage.this, SavedSearchesPage.class);
-        intent.putExtra("username", username);
         startActivity(intent);
     }
 

@@ -119,7 +119,6 @@ public class SavedSearchesPage extends Activity implements View.OnClickListener 
         intent.putExtra("location", location);
         intent.putExtra("cuisine", cuisine);
         intent.putExtra("distance", String.valueOf(distance));
-        intent.putExtra("username", username);
 
         Log.v("SAVED SEARCHES", "LOAD LISTINGS PAGE FROM PREVIOUS SEARCH");
         startActivity(intent);
