@@ -23,7 +23,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import edu.cmu.foreverhungry.R;
-
+import edu.cmu.foreverhungry.model.UserInfo;
 
 
 public class LoginFragment extends LoginFragmentBase {
@@ -163,7 +163,8 @@ public class LoginFragment extends LoginFragmentBase {
 
         @Override
         protected Object doInBackground(Object[] params) {
-            String result = null;
+            String result = new String();
+            ObjectInputStream in;
             try {
                 String ServerIP = getResources().getString(R.string.ServerIP);
                 Integer port = Integer.valueOf(getResources().getString(R.string.ServerPort));
@@ -171,7 +172,7 @@ public class LoginFragment extends LoginFragmentBase {
                 Log.v("subbu3", port.toString());
                 Socket socket = new Socket(ServerIP, port);
 
-                ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+                in = new ObjectInputStream(socket.getInputStream());
                 ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
                 out.writeObject("passwordcheck");
                 out.writeObject(username);
@@ -181,9 +182,20 @@ public class LoginFragment extends LoginFragmentBase {
                 Log.d("ERROR", "Login failed" + e.getMessage());
                 return false;
             }
-
+            Log.v("subbu3",result);
             if(result.equals("SUCCESS")) {
                 success = true;
+                Log.v("subbu3","success is in the making");
+                try {
+                    String email = (String) in.readObject();
+                    Log.v("subbu4","SUCCESS is in the making");
+                    Log.v("subbu4",email);
+                    UserInfo.getInstance().setUsername(username);
+                    UserInfo.getInstance().setEmail(email);
+                    UserInfo.getInstance().setPassword(password);
+                    Log.v("subbu4",UserInfo.getInstance().getEmail());
+
+                }catch ( Exception ex) {ex.printStackTrace();}
                 return username;
             }
 

@@ -151,6 +151,9 @@ public class RegisterFragment extends LoginFragmentBase implements OnClickListen
         @Override
         protected Object doInBackground(Object[] params) {
             String result = null;
+            ObjectInputStream in;
+
+
             try {
                 Log.d("REGISTER FRAGMENT", "Before socket");
                 String ServerIP = getResources().getString(R.string.ServerIP);
@@ -160,7 +163,7 @@ public class RegisterFragment extends LoginFragmentBase implements OnClickListen
 
                 Socket socket = new Socket(ServerIP, port);
                 Log.d("REGISTER FRAGMENT", "Before IN");
-                ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+                in = new ObjectInputStream(socket.getInputStream());
                 Log.d("REGISTER FRAGMENT", "Before OUT");
                 ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
                 Log.d("REGISTER FRAGMENT", "After OUT");
@@ -195,7 +198,7 @@ public class RegisterFragment extends LoginFragmentBase implements OnClickListen
                 registerSuccess();
                 return;
             } else if (complete == true){
-                showToast("Username already exists. Choose a different one");
+                showToast("Username and Email already exists. Choose a different one");
         }
         }
     }

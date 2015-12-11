@@ -75,7 +75,7 @@ public class DBOps {
 		return true;
 	}
 	
-	public boolean authenticate(String username, String password) {
+	public boolean authenticate(String username, String password, StringBuilder email) {
 		String queryStr = "SELECT * FROM " + TABLE_NAME + " WHERE username='" + username + "';";
 		try {
 			Statement st = conn.createStatement();
@@ -90,6 +90,9 @@ public class DBOps {
 			if(!result.getString("password").equals(password)) {
 				return false;
 			}
+			
+			email.append(result.getString("email"));
+			System.out.println(email);
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 			return false;
@@ -127,4 +130,32 @@ public class DBOps {
 		
 		return true;
 	}
+	
+	public boolean changePassword(String email, String password) {
+		System.out.println(email);
+		
+		String queryStr = "SELECT * FROM " + TABLE_NAME + " WHERE email='" + email + "';";
+		String updateStr = "UPDATE "+ TABLE_NAME + " SET password='"+password+"'" + " WHERE email='" + email + "';";
+		try {
+			Statement st = conn.createStatement();
+			if(!st.execute(queryStr)) {
+				System.out.println("select failed");
+				return false;
+			}
+			
+			Statement st2 = conn.createStatement();
+			int done = st2.executeUpdate(updateStr);
+			if(done <= 0) {
+				System.out.println("update failed");
+				return false;
+			}
+		} catch (Exception e) {
+			System.out.println("ERROR:" + e.getMessage());
+			return false;
+		}
+		System.out.println("returning success");
+		return true;
+	}
+	
+	
 }
