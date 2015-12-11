@@ -200,12 +200,12 @@ public class ListingsFragment extends Fragment {
         @Override
         protected List<RestaurantInfo> doInBackground(Integer... params) {
 
-            Log.v("subbu1","background");
-            Log.v("subbu1",locationInput);
-            Log.v("subbu1",cuisineInput);
-            Log.v("subbu1",String.valueOf(distance));
-            Log.v("subbu1",String.valueOf(latitude));
-            Log.v("subbu1",String.valueOf(longitude));
+            Log.v(TAG,"background");
+            Log.v(TAG,locationInput);
+            Log.v(TAG,cuisineInput);
+            Log.v(TAG,String.valueOf(distance));
+            Log.v(TAG,String.valueOf(latitude));
+            Log.v(TAG,String.valueOf(longitude));
 
 
             //call yelp
@@ -235,10 +235,10 @@ public class ListingsFragment extends Fragment {
 
         @Override
         protected void onPostExecute(final List<RestaurantInfo> searchResults) {
-            Log.v("subbu1", "ListingsFragment ShowListings postExecute");
+            Log.v(TAG, "ListingsFragment ShowListings postExecute");
             super.onPostExecute(searchResults);
             if (mAdapter == null) {
-                Log.v("subbu1", "adapter is null");
+                Log.v(TAG, "adapter is null");
             }
 
             if (searchResults == null) {

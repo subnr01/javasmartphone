@@ -218,14 +218,14 @@ public class ListingsPage extends FragmentActivity {
 
     public void initLocationManager()
     {
-        Log.v("subbu1", "initLocationManagert");
+        Log.v(TAG, "initLocationManagert");
         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 
 
         if (locationInput.equalsIgnoreCase("current")) {
             Location location =
                     locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            Log.v("subbu1", "Current selected");
+            Log.v(TAG, "Current selected");
 
         } else
         {
@@ -238,12 +238,12 @@ public class ListingsPage extends FragmentActivity {
 
             @Override
             public void onLocationChanged(Location location) {
-                Log.v("subbu2", "ON LOCATION CHANGED");
+                Log.v(TAG, "ON LOCATION CHANGED");
                 Latitude = location.getLatitude();
                 Longitude = location.getLongitude();
 
                 if (!onLocationFound){
-                    Log.v("subbu1", "fragment reopened");
+                    Log.v(TAG, "fragment reopened");
                     onLocationFound = true;
                     /*
                         Now that we have got the location information
@@ -256,14 +256,14 @@ public class ListingsPage extends FragmentActivity {
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
                 if (status == LocationProvider.AVAILABLE) {
-                    Log.v("subbu1", "ON STATUS CHANGED - AVAILABLE");
+                    Log.v(TAG, "ON STATUS CHANGED - AVAILABLE");
                 }
                 else if (status == LocationProvider.OUT_OF_SERVICE) {
-                    Log.v("subbu1", "ON STATUS CHANGED - OUT OF SERVICE");
+                    Log.v(TAG, "ON STATUS CHANGED - OUT OF SERVICE");
 
                 }
                 else if (status == LocationProvider.TEMPORARILY_UNAVAILABLE) {
-                    Log.v("subbu1", "ON STATUS CHANGED - TEMP UNAVAILABLE");
+                    Log.v(TAG, "ON STATUS CHANGED - TEMP UNAVAILABLE");
                 }
             }
 
@@ -321,7 +321,7 @@ public class ListingsPage extends FragmentActivity {
     * Load the listings fragment
     */
     public void loadListingsFragment(){
-        Log.v("subbu1","load listing fragment");
+        Log.v(TAG,"load listing fragment");
 
 
         Log.v(TAG,String.valueOf(Latitude));
@@ -345,8 +345,8 @@ public class ListingsPage extends FragmentActivity {
         bundle.putDouble("latitude",Latitude);
         bundle.putDouble("distance",Distance);
 
-        Log.v("subbu1", String.valueOf(Latitude));
-        Log.v("subbu1",String.valueOf(Longitude));
+        Log.v(TAG, String.valueOf(Latitude));
+        Log.v(TAG,String.valueOf(Longitude));
 
         listingsFragment.setArguments(bundle);
 

@@ -52,8 +52,7 @@ public class RestaurantInfo implements Serializable{
 
     public void setUpAddress ( String addr) {
         this.address = addr.substring(2,addr.length() - 2);
-        Log.v("subbu1","oringinal address: "+addr);
-        Log.v("subbu1","address: "+address);
+
 
     }
 

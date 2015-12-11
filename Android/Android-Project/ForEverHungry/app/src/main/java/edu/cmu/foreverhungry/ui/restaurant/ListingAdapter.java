@@ -160,7 +160,6 @@ public class ListingAdapter extends RecyclerView.Adapter<ListingAdapter.ViewHold
 
             final String name = restaurantInfo.getRestaurantName();
             final String address = restaurantInfo.getAddress();
-            Log.v("subbu1",address);
             final String imageUrl = restaurantInfo.getImageURL();
 
 

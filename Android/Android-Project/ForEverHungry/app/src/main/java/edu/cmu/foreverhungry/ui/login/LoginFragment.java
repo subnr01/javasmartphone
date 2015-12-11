@@ -4,6 +4,7 @@ package edu.cmu.foreverhungry.ui.login;
  * Created by subs on 11/25/15.
  */
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import java.net.Socket;
 
 import edu.cmu.foreverhungry.R;
 import edu.cmu.foreverhungry.model.UserInfo;
+import edu.cmu.foreverhungry.exception.*;
 
 
 public class LoginFragment extends LoginFragmentBase {
@@ -168,8 +170,8 @@ public class LoginFragment extends LoginFragmentBase {
             try {
                 String ServerIP = getResources().getString(R.string.ServerIP);
                 Integer port = Integer.valueOf(getResources().getString(R.string.ServerPort));
-                Log.v("subbu3", ServerIP);
-                Log.v("subbu3", port.toString());
+                Log.v(TAG, ServerIP);
+                Log.v(TAG, port.toString());
                 Socket socket = new Socket(ServerIP, port);
 
                 in = new ObjectInputStream(socket.getInputStream());
@@ -182,18 +184,16 @@ public class LoginFragment extends LoginFragmentBase {
                 Log.d("ERROR", "Login failed" + e.getMessage());
                 return false;
             }
-            Log.v("subbu3",result);
             if(result.equals("SUCCESS")) {
                 success = true;
-                Log.v("subbu3","success is in the making");
+
                 try {
                     String email = (String) in.readObject();
-                    Log.v("subbu4","SUCCESS is in the making");
-                    Log.v("subbu4",email);
+                    Log.v(TAG,email);
                     UserInfo.getInstance().setUsername(username);
                     UserInfo.getInstance().setEmail(email);
                     UserInfo.getInstance().setPassword(password);
-                    Log.v("subbu4",UserInfo.getInstance().getEmail());
+                    Log.v(TAG,UserInfo.getInstance().getEmail());
 
                 }catch ( Exception ex) {ex.printStackTrace();}
                 return username;
@@ -207,8 +207,12 @@ public class LoginFragment extends LoginFragmentBase {
                 loginSuccess(username);
                 return;
             }
-
-            showToast("Invalid username/password. Try again!");
+            AlertDialog.Builder builder =
+                    new AlertDialog.Builder(getActivity());
+            new AppException("Invalid username/password. Try again!",builder);
+            builder.setPositiveButton("Ok", null);
+            builder.show();
+            //showToast("Invalid username/password. Try again!");
         }
     }
 }

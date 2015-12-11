@@ -90,19 +90,19 @@ public class ForgotPasswordFragment extends LoginFragmentBase implements OnClick
             try {
                 String ServerIP = getResources().getString(R.string.ServerIP);
                 Integer port = Integer.valueOf(getResources().getString(R.string.ServerPort));
-                Log.v("subbu3", ServerIP);
-                Log.v("subbu3", port.toString());
+                Log.v(TAG, ServerIP);
+                Log.v(TAG, port.toString());
                 Socket socket = new Socket(ServerIP, port);
                 in = new ObjectInputStream(socket.getInputStream());
                 out = new ObjectOutputStream(socket.getOutputStream());
                 out.writeObject("lostpassword");
                 out.writeObject(email);
                 result = (String)in.readObject();
-                Log.v("subbu3","result is "+result);
+                Log.v(TAG,"result is "+result);
                 if(result.equals("SUCCESS")) {
                     success = true;
                     password = (String)in.readObject();
-                    Log.v("subbu3",password);
+                    Log.v(TAG,password);
                     return null;
                 }
             } catch (Exception e) {
@@ -114,7 +114,7 @@ public class ForgotPasswordFragment extends LoginFragmentBase implements OnClick
         }
 
         protected void onPostExecute(final Object loginResults) {
-            Log.v("subbu3","success is "+success);
+            Log.v(TAG,"success is "+success);
             if(success == false) {
                 showToast("Email not found. Try again!");
                 return;

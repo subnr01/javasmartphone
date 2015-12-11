@@ -41,12 +41,14 @@ public class DetailedView extends Activity implements View.OnClickListener {
     private ArrayList<Review> reviews;
     private LinearLayout reviewsOuterLayout;
     private ImageButton callButton;
+    private static final String TAG = "DetailedView";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_detailed_view);
         setContentView(R.layout.detailed_view_activity);
+
 
         res = (RestaurantInfo) getIntent().getExtras().getSerializable("restaurant");
         Log.d("DETAILED VIEW", "ON CREATE");
@@ -152,15 +154,15 @@ public class DetailedView extends Activity implements View.OnClickListener {
         @Override
         public void onCallStateChanged(int state, String incomingNumber) {
             if(TelephonyManager.CALL_STATE_RINGING == state) {
-                Log.v("subbu1", "RINGING, number: " + incomingNumber);
+                Log.v(TAG, "RINGING, number: " + incomingNumber);
             }
             if(TelephonyManager.CALL_STATE_OFFHOOK == state) {
                 //wait for phone to go offhook (probably set a boolean flag) so you know your app initiated the call.
-                Log.v("subbu1", "OFFHOOK");
+                Log.v(TAG, "OFFHOOK");
             }
             if(TelephonyManager.CALL_STATE_IDLE == state) {
                 //when this state occurs, and your flag is set, restart your app
-                Log.v("subbu1", "IDLE");
+                Log.v(TAG, "IDLE");
             }
         }
     }

@@ -29,12 +29,12 @@ public class MapPage extends Activity implements View.OnClickListener{
 
 
         if ( searchInfo == null) {
-            Log.v("subbu1","serachinfo is null");
+            Log.v("MAPPAGE","serachinfo is null");
         }
 
         if (searchResults == null)
         {
-            Log.v("subbu1","searchResults is null");
+            Log.v("MAPPAGE","searchResults is null");
         }
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.restaurantMap);
