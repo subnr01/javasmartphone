@@ -47,7 +47,6 @@
         android:id="@+id/spinnerSavedSearches"
         android:layout_below="@+id/textView18"
         android:layout_centerHorizontal="true"
-        style="@style/spinner_style"
         android:layout_marginTop="28dp" />
 
 <Button

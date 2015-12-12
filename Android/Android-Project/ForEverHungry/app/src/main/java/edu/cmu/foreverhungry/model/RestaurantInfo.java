@@ -51,9 +51,12 @@ public class RestaurantInfo implements Serializable{
     }
 
     public void setUpAddress ( String addr) {
-        this.address = addr.substring(2,addr.length() - 2);
-
-
+        if (addr.length() > 2) {
+            this.address = addr.substring(2, addr.length() - 2);
+        } else {
+            Log.d("NULL ADDRESS", addr);
+            this.address = "123, Fifth Avenue";
+        }
     }
 
     public void setRestaurantName(String name) {
